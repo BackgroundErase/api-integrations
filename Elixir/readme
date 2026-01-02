@@ -1,0 +1,151 @@
+# BEN2 Elixir CLI (Background Removal)
+
+A minimal Elixir script that uploads an image to BackgroundErase.NET and saves the returned PNG with transparency. No external dependencies required.
+
+- API base: https://api.backgrounderase.net/v2
+- Get your API key: https://backgrounderase.net/account
+- Plans/pricing: https://backgrounderase.net/pricing
+
+Result: The API returns raw PNG bytes (transparent background). The script writes those bytes to your chosen output file.
+
+## Requirements
+
+- Elixir installed (Elixir/Erlang/OTP 24+ recommended)
+  - Check: `elixir -v`
+- Internet access and a valid API key (business subscription)
+
+## Get the code
+
+Option A: Sparse clone only the Elixir folder
+```bash
+git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
+cd ben-api-other-integrations
+git sparse-checkout init --cone
+git sparse-checkout set Elixir
+git checkout main   # or the repo's default branch if different
+cd Elixir
+```
+
+Option B: Export just the Elixir folder (no git metadata)
+```bash
+svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Elixir
+cd Elixir
+```
+
+Option C: Download a single file directly
+```bash
+curl -L -o background_removal.exs \
+  https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/Elixir/background_removal.exs
+```
+
+Optional: Get a sample input image
+```bash
+curl -L -o input.jpg \
+  https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+```
+
+## Set your API key
+
+- macOS/Linux (bash/zsh):
+```bash
+export BG_ERASE_API_KEY="YOUR_API_KEY"
+```
+
+- Windows (PowerShell):
+```powershell
+$env:BG_ERASE_API_KEY="YOUR_API_KEY"
+```
+
+- Windows (Command Prompt/cmd.exe):
+```bat
+set BG_ERASE_API_KEY=YOUR_API_KEY
+```
+
+Note: Do not commit your API key to source control.
+
+## Run
+
+Basic usage:
+```bash
+elixir background_removal.exs <input_image> <output_png>
+```
+
+Example:
+```bash
+elixir background_removal.exs input.jpg output.png
+```
+
+- On success, you’ll see: `✅ Saved: /absolute/path/to/output.png`
+- The output is a PNG with transparency.
+
+## What the script does
+
+- Validates arguments and API key from the BG_ERASE_API_KEY environment variable.
+- Reads your input file and detects its MIME type:
+  - First tries MIME.from_path/1 (if available)
+  - Falls back to a simple extension map: jpg/jpeg, png, webp, bmp, tif/tiff
+  - Unknown extensions default to application/octet-stream
+- Builds a multipart/form-data request with the form field name image_file.
+- POSTs to https://api.backgrounderase.net/v2 with header x-api-key: YOUR_API_KEY.
+- Saves the raw PNG response bytes to your output path.
+
+No external dependencies are required. The script uses Erlang’s inets/:httpc and :ssl, both standard with Elixir.
+
+## Supported inputs
+
+Common image types should work:
+- jpg, jpeg, png, webp, bmp, tif, tiff
+- Others are sent as application/octet-stream; they may still work if accepted by the API.
+
+The output is always PNG (with transparency).
+
+## Troubleshooting
+
+- “Missing API key”
+  - Ensure BG_ERASE_API_KEY is set in the current shell/session.
+  - On Windows PowerShell, use `$env:BG_ERASE_API_KEY="..."`.
+
+- “Input file not found”
+  - Check the path you pass as the first argument.
+  - Use absolute paths if needed.
+
+- HTTP 401/403
+  - Invalid or expired API key. Check your subscription and key at https://backgrounderase.net/account.
+
+- HTTP 415 or similar
+  - Unsupported input type. Try a common format like JPG or PNG.
+
+- SSL errors or TLS handshake issues
+  - Update Elixir/Erlang to a recent version.
+  - Ensure your system has an up-to-date CA certificate bundle.
+
+- Timeouts or network problems
+  - The script uses :httpc defaults. If you need to change timeouts or proxy settings, you can modify the request call:
+    - Example: `:httpc.request(:post, {url, headers, content_type, body}, [timeout: 60000], [])`
+
+## Notes
+
+- Field name for the file upload is image_file.
+- Base URL is fixed to https://api.backgrounderase.net/v2; you shouldn’t need to change it for normal use.
+- If you prefer robust MIME detection via the mime package, you can add Mix.install at the top of the script (Elixir 1.12+) and remove the fallback, but it’s not required. The script already works without extra deps.
+
+## Example session
+
+```bash
+# 1) Set API key
+export BG_ERASE_API_KEY="YOUR_API_KEY"
+
+# 2) Get sample input
+curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+
+# 3) Run
+elixir background_removal.exs input.jpg cutout.png
+
+# 4) Result
+# ✅ Saved: /.../cutout.png
+```
+
+Issues and PRs are welcome. Please include:
+- Elixir and Erlang/OTP versions (`elixir -v`)
+- OS and version
+- Reproduction steps and any console output/errors

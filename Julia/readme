@@ -1,0 +1,140 @@
+# BEN2 Julia API Client (CLI script)
+
+A tiny Julia script that uploads an image to BackgroundErase.NET and saves the cutout as a PNG with transparency.
+
+- API: https://api.backgrounderase.net/v2
+- Get your API key: https://backgrounderase.net/account
+- Plans/pricing: https://backgrounderase.net/pricing
+
+The API returns raw PNG bytes. This script:
+- Builds a multipart/form-data request with field name image_file
+- Sniffs the input file’s MIME type (jpg, jpeg, png, heic, webp; others fallback to application/octet-stream)
+- Saves the returned PNG to the path you provide
+
+## Requirements
+
+- Julia 1.8+ (https://julialang.org/downloads/)
+- Julia packages: HTTP, UUIDs, MIMEs
+
+Install the packages once:
+```bash
+julia -e 'using Pkg; Pkg.add(["HTTP","UUIDs","MIMEs"])'
+```
+
+## Get the script
+
+Option A: Clone only the Julia folder from the repo
+```bash
+git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
+cd ben-api-other-integrations
+git sparse-checkout init --cone
+git sparse-checkout set Julia
+git checkout main   # replace if your default branch differs
+cd Julia
+```
+
+Option B: Export the Julia folder via SVN
+```bash
+svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Julia
+cd Julia
+```
+
+Option C: Download just the single file
+```bash
+curl -L -o background_removal.jl \
+  https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/Julia/background_removal.jl
+```
+
+Get a sample input image:
+```bash
+curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+```
+
+## Generate an API key
+
+- Sign in or create an account: https://backgrounderase.net/account  
+- If needed, purchase/upgrade: https://backgrounderase.net/pricing  
+- Copy your API key from your account page
+
+## Usage (CLI)
+
+Basic usage:
+```bash
+julia background_removal.jl YOUR_API_KEY input.jpg output.png
+```
+
+Recommended: pass the key via an environment variable so it isn’t stored in shell history.
+
+macOS/Linux:
+```bash
+export BEN2_API_KEY="your_key_here"
+julia background_removal.jl "$BEN2_API_KEY" input.jpg output.png
+```
+
+Windows (PowerShell):
+```powershell
+$env:BEN2_API_KEY="your_key_here"
+julia background_removal.jl $env:BEN2_API_KEY input.jpg output.png
+```
+
+If successful, you’ll see:
+```
+✅ Saved: output.png
+```
+
+Notes:
+- The result is a PNG with transparency.
+- The script expects three arguments in order: API_KEY, input_path, output_path.
+- The multipart field name is image_file, as required by the API.
+
+## Use from Julia code (programmatic)
+
+From the Julia REPL or another script:
+```julia
+include("background_removal.jl")
+
+api_key = "YOUR_API_KEY"
+background_removal("input.jpg", "output.png", api_key)
+```
+
+## How it works
+
+- MIME detection: HTTP.sniffmime is used to guess Content-Type based on bytes/extension. If detection fails, it falls back to application/octet-stream.
+- Multipart: Builds a multipart/form-data body with a random boundary and one part named image_file containing your image.
+- Response: On HTTP 200, writes resp.body directly to the output file (PNG). Otherwise prints the status and error message.
+
+Supported inputs (for MIME detection):
+- jpg, jpeg, png, heic, webp (others still upload, but use application/octet-stream)
+
+## Troubleshooting
+
+- 401 Unauthorized
+  - Make sure your API key is correct and active (https://backgrounderase.net/account).
+  - Ensure you haven’t exceeded your plan usage (https://backgrounderase.net/pricing).
+
+- 415 Unsupported Media Type
+  - Ensure your input file is a valid image (jpg/jpeg/png/heic/webp recommended).
+
+- 4xx/5xx errors
+  - The script prints the HTTP status and server message. If issues persist, try a different image or verify connectivity.
+
+- Timeouts/Proxies
+  - The script uses default HTTP.request settings. If you need custom timeouts or proxy support, you can adapt the call:
+    - HTTP.request("POST", url, headers, body; connect_timeout=30, readtimeout=120)
+
+## Security tips
+
+- Prefer passing the key from an environment variable instead of typing it in directly.
+- Avoid committing your key to source control.
+
+## License and contributions
+
+Feel free to open issues or PRs in the repo:
+- https://github.com/PramaLLC/ben-api-other-integrations
+
+Please include:
+- Julia version
+- OS/version
+- Repro steps, inputs, and the printed status/error text
+
+Enjoy fast, accurate background removal with a minimal Julia setup.

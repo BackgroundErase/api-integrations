@@ -1,0 +1,14 @@
+[package]
+name = "Rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# ureq with TLS; keep features minimal on old toolchains
+ureq = { version = "2.7.1", default-features = false, features = ["tls"] }
+mime_guess = "2.0"
+uuid = { version = "1", features = ["v4"] }
+
+# Pin older url/idna that don't pull the ICU/zerofrom stack
+url  = "=2.4.1"
+idna = "=0.4.0"

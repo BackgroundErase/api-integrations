@@ -1,0 +1,29 @@
+name: flutter_integrations
+description: BEN background removal demo
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Networking & file picking
+  http: ^1.2.2
+  file_picker: ^8.0.0
+  path: ^1.9.0
+  http_parser: ^4.0.2
+
+  # Saving (non-web only; web uses conditional import)
+  image_gallery_saver: ^2.0.3
+  permission_handler: ^11.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
