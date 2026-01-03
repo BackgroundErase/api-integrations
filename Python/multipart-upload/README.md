@@ -8,48 +8,6 @@ A minimal Python script that uploads an image to the BackgroundErase API, remove
 
 This client uses only the Python standard library (no external dependencies).
 
-## Quick start
-
-1) Get an API key
-- Create an account or sign in: https://backgrounderase.com/account
-- If needed, purchase a plan: https://backgrounderase.com/pricing
-
-2) Download this Python folder (one of the options below)
-
-Option A: Git sparse checkout (only the Python folder)
-```bash
-git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
-cd api-integrations
-git sparse-checkout init --cone
-git sparse-checkout set Python
-git checkout main   # or replace 'main' with the repo's default branch if different
-cd Python
-```
-
-Option B: Subversion export (no git metadata)
-```bash
-svn export https://github.com/BackgroundErase/api-integrations/trunk/Python
-cd Python
-```
-
-3) Put your API key in the script
-- Open background_removal.py and replace:
-  - API_KEY = "YOUR_API_KEY"
-  with your actual key.
-
-4) Get a sample input image (or use your own)
-```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
-```
-
-5) Run the script
-```bash
-python3 background_removal.py
-```
-
-- On success you’ll see:
-  - ✅ Saved: ./output.png
-- The output is a PNG with transparency.
 
 ## Files
 

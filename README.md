@@ -29,6 +29,8 @@ For a full list of available flags, see the
 
 ## Supported Integrations
 
+
+### Multipart (direct file upload)
 Assembly  
 Bash / Shell  
 Brainfuck  
@@ -42,7 +44,8 @@ Flutter
 Go  
 Haskell  
 Java  
-JavaScript  
+JavaScript (Node)
+TypeScript (Node)
 Julia  
 Kotlin  
 Lua  
@@ -57,8 +60,16 @@ Rust
 Scala  
 Scratch  
 Swift  
-TypeScript  
 Zig  
+
+### JSON I/O (base64 in, base64 out)
+JavaScript (Node)  
+TypeScript (Node)  
+Python  
+Docker
+
+> **Multipart** sends an image file directly (`multipart/form-data`).
+> **JSON I/O** sends base64-encoded image bytes in JSON and returns base64 output.
 
 ---
 

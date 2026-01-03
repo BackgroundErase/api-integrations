@@ -2,7 +2,7 @@
 const https = require('https');
 const fs = require('fs');
 
-const API_KEY = 'YOUR_API_KEY'; // 🔑 Replace with your real API key
+const API_KEY = 'YOUR_API_KEY'; // Replace with your API key
 
 function backgroundRemoval(srcPath, dstPath) {
   return new Promise((resolve, reject) => {
@@ -40,7 +40,6 @@ function backgroundRemoval(srcPath, dstPath) {
 
     req.on('error', reject);
 
-    // Multipart form
     req.write(`--${boundary}\r\n`);
     req.write(`Content-Disposition: form-data; name="image_file"; filename="${srcPath.split('/').pop()}"\r\n`);
     req.write('Content-Type: application/octet-stream\r\n\r\n');
@@ -55,10 +54,9 @@ function backgroundRemoval(srcPath, dstPath) {
   });
 }
 
-// ────────────────────────────────────────────────────────────
-// Run example from command line
+
 // Usage: node background_removal.js input.jpg output.png
-// ────────────────────────────────────────────────────────────
+
 if (require.main === module) {
   const [,, src, dst] = process.argv;
 
