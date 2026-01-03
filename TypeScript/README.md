@@ -1,4 +1,4 @@
-# BackgroundErase TypeScript example (background removal)
+# BackgroundErase TypeScript example
 
 Minimal TypeScript example that uploads an image to the BackgroundErase API and saves the cutout (PNG with transparency) to disk.
 
