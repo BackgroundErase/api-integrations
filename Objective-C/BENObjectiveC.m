@@ -39,7 +39,7 @@ static void background_removal(NSString *src, NSString *dst, NSString *apiKey) {
     [body appendData:[tail dataUsingEncoding:NSUTF8StringEncoding]];
 
     // Prepare request
-    NSURL *url = [NSURL URLWithString:@"https://api.backgrounderase.net/v2"];
+    NSURL *url = [NSURL URLWithString:@"https://api.backgrounderase.com/v2"];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     req.HTTPMethod = @"POST";
     [req setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary]

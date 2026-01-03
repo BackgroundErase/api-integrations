@@ -1,22 +1,22 @@
-# BEN2 Go API Client (CLI Example)
+# BackgroundErase Go API Client (CLI Example)
 
-A minimal Go client for BackgroundErase.NET. Upload an image, remove the background via the API, and save the result as a PNG with transparency.
+A minimal Go client for the BackgroundErase API. Upload an image, remove the background via the API, and save the result as a PNG with transparency.
 
-- API: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Buy/upgrade a plan: https://backgrounderase.net/pricing
+- API: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Buy/upgrade a plan: https://backgrounderase.com/pricing
 
 ## Quick start
 
 1) Get an API key
-- Sign in or create an account: https://backgrounderase.net/account
-- Ensure you have an active (business) plan: https://backgrounderase.net/pricing
+- Sign in or create an account: https://backgrounderase.com/account
+- Ensure you have an active (business) plan: https://backgrounderase.com/pricing
 
 2) Fetch this example
 Option A: Git (sparse checkout)
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set GO
 git checkout main   # or the repo's default branch if different
@@ -25,13 +25,13 @@ cd GO
 
 Option B: SVN export
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/GO
+svn export https://github.com/BackgroundErase/api-integrations/trunk/GO
 cd GO
 ```
 
 3) Get a sample image (optional)
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 4) Run the CLI
@@ -81,11 +81,11 @@ go build -o background-erase.exe
 
 - Go 1.18+ (standard library only)
 - macOS, Linux, or Windows
-- Internet access to reach https://api.backgrounderase.net
+- Internet access to reach https://api.backgrounderase.com
 
 ## What this example does
 
-- Sends a multipart/form-data POST to https://api.backgrounderase.net/v2
+- Sends a multipart/form-data POST to https://api.backgrounderase.com/v2
 - Uploads the image under field name image_file
 - Sets header x-api-key: YOUR_API_KEY
 - Infers Content-Type from the file extension (falls back to application/octet-stream if unknown)
@@ -94,7 +94,7 @@ go build -o background-erase.exe
 
 Excerpt from main.go:
 ```go
-req, err := http.NewRequest("POST", "https://api.backgrounderase.net/v2", &body)
+req, err := http.NewRequest("POST", "https://api.backgrounderase.com/v2", &body)
 ...
 req.Header.Set("Content-Type", writer.FormDataContentType())
 req.Header.Set("x-api-key", apiKey)
@@ -154,7 +154,7 @@ Output format:
 
 - Do not commit your API key to source control
 - Prefer environment variables for local development
-- Rotate/regenerate keys from https://backgrounderase.net/account if needed
+- Rotate/regenerate keys from https://backgrounderase.com/account if needed
 
 ## License and contributions
 

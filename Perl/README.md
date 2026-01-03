@@ -1,10 +1,10 @@
-# BackgroundErase.NET Perl API Client (CLI)
+# BackgroundErase Perl API Client (CLI)
 
-Minimal Perl script to remove image backgrounds via the BackgroundErase.NET v2 API. Upload an image and save the returned PNG (with transparency) to disk.
+Minimal Perl script to remove image backgrounds via the BackgroundErase API. Upload an image and save the returned PNG (with transparency) to disk.
 
-- API: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Buy/upgrade a plan: https://backgrounderase.net/pricing
+- API: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Buy/upgrade a plan: https://backgrounderase.com/pricing
 
 This repo/folder contains:
 - background_removal.pl — a small CLI tool using LWP to call the API
@@ -12,14 +12,14 @@ This repo/folder contains:
 ## Quick start
 
 1) Get an API key
-- Create an account or sign in: https://backgrounderase.net/account
-- Ensure your plan includes API access: https://backgrounderase.net/pricing
+- Create an account or sign in: https://backgrounderase.com/account
+- Ensure your plan includes API access: https://backgrounderase.com/pricing
 
 2) Get the script
 Option A: Sparse checkout from the monorepo
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Perl
 git checkout main
@@ -28,7 +28,7 @@ cd Perl
 
 Option B: SVN export (no git history)
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Perl
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Perl
 cd Perl
 ```
 
@@ -81,7 +81,7 @@ setx BG_ERASE_API_KEY "YOUR_API_KEY"
 
 5) Download a sample image (optional)
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 6) Run
@@ -102,7 +102,7 @@ On error, you’ll see the HTTP status and any response body.
 
 ## What the script does
 
-- Sends a multipart/form-data POST to https://api.backgrounderase.net/v2
+- Sends a multipart/form-data POST to https://api.backgrounderase.com/v2
 - Field name: image_file
 - Header: x-api-key: YOUR_API_KEY
 - Guesses Content-Type from the filename extension (via LWP::MediaTypes); falls back to application/octet-stream
@@ -146,7 +146,7 @@ perl background_removal.pl .\input.jpg .\output.png
   - Alternative: edit the script and replace 'YOUR_API_KEY' with your key (not recommended)
 
 - Endpoint
-  - Default: https://api.backgrounderase.net/v2
+  - Default: https://api.backgrounderase.com/v2
   - You can change it in the script if needed
 
 - Timeout/User-Agent
@@ -182,7 +182,7 @@ perl background_removal.pl .\input.jpg .\output.png
 
 - Verifying the request manually (for debugging)
   - Equivalent curl:
-    curl -X POST "https://api.backgrounderase.net/v2" \
+    curl -X POST "https://api.backgrounderase.com/v2" \
       -H "x-api-key: $BG_ERASE_API_KEY" \
       -F "image_file=@input.jpg" \
       --output output.png

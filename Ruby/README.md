@@ -1,16 +1,16 @@
-# BEN2 Ruby API Client (background_removal.rb)
+# BackgroundErase Ruby API Client (background_removal.rb)
 
-A minimal Ruby client for BackgroundErase.NET v2. Upload an image, get back a PNG with transparency (background removed).
+A minimal Ruby client for BackgroundErase. Upload an image, get back a PNG with transparency (background removed).
 
-- API endpoint: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Buy/upgrade a plan: https://backgrounderase.net/pricing
+- API endpoint: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Buy/upgrade a plan: https://backgrounderase.com/pricing
 
 ## Quick start
 
 1) Get an API key
-- Sign in: https://backgrounderase.net/account
-- Ensure you’re on a business plan: https://backgrounderase.net/pricing
+- Sign in: https://backgrounderase.com/account
+- Ensure you’re on a business plan: https://backgrounderase.com/pricing
 
 2) Get the Ruby script
 - See Install below (git sparse-checkout or svn export), or copy background_removal.rb into your project.
@@ -18,7 +18,7 @@ A minimal Ruby client for BackgroundErase.NET v2. Upload an image, get back a PN
 3) Run it on an image
 ```bash
 # Fetch a sample image (optional)
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 
 # Edit background_removal.rb and set API_KEY = "YOUR_API_KEY"
 # Then run:
@@ -39,8 +39,8 @@ Notes:
 
 Option A: Clone this repo’s Ruby folder
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Ruby
 git checkout main
@@ -49,7 +49,7 @@ cd Ruby
 
 Option B: Export just the Ruby folder
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Ruby
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Ruby
 cd Ruby
 ```
 
@@ -65,10 +65,10 @@ API key (required)
   - background_removal("input.jpg", "output.png", api_key: "YOUR_API_KEY")
 - Recommended: keep keys out of source control. You can use an env var and pass it in:
 ```bash
-export BEN2_API_KEY="YOUR_API_KEY"
-ruby -e 'require "./background_removal"; background_removal("input.jpg","output.png", api_key: ENV.fetch("BEN2_API_KEY"))'
+export BG_ERASE_API_KEY="YOUR_API_KEY"
+ruby -e 'require "./background_removal"; background_removal("input.jpg","output.png", api_key: ENV.fetch("BG_ERASE_API_KEY"))'
 ```
-(Optional) You can also tweak the script to default to ENV["BEN2_API_KEY"] if you prefer.
+(Optional) You can also tweak the script to default to ENV["BG_ERASE_API_KEY"] if you prefer.
 
 TLS/CA certificates
 - The script verifies TLS and tries common CA bundle locations via build_cert_store.
@@ -126,7 +126,7 @@ TLS
 
 Download a sample image and run:
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ruby background_removal.rb input.jpg output.png
 ```
 
@@ -137,8 +137,8 @@ ruby background_removal.rb photo.heic cutout.png
 
 Call from Ruby with an env var key:
 ```bash
-export BEN2_API_KEY="YOUR_API_KEY"
-ruby -e 'require "./background_removal"; background_removal("input.jpg","cutout.png", api_key: ENV.fetch("BEN2_API_KEY"))'
+export BG_ERASE_API_KEY="YOUR_API_KEY"
+ruby -e 'require "./background_removal"; background_removal("input.jpg","cutout.png", api_key: ENV.fetch("BG_ERASE_API_KEY"))'
 ```
 
 ## Tips
@@ -179,7 +179,7 @@ Network timeouts
 background_removal.rb
 - guess_mime(path): maps file extensions to MIME types.
 - build_cert_store: builds a robust OpenSSL::X509::Store using system defaults, SSL_CERT_FILE/SSL_CERT_DIR if set, and common bundle locations.
-- background_removal(src, dst, api_key:): sends a multipart/form-data POST to https://api.backgrounderase.net/v2 with the image under image_file; saves the returned PNG.
+- background_removal(src, dst, api_key:): sends a multipart/form-data POST to https://api.backgrounderase.com/v2 with the image under image_file; saves the returned PNG.
 - CLI entrypoint: ruby background_removal.rb input.jpg output.png
 
 Issues and PRs are welcome. Please include:

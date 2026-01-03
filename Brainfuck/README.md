@@ -1,9 +1,9 @@
 
-# Brainfuck → BackgroundErase.NET via curl (systemf execve)
+# Brainfuck → api.backgrounderase.com via curl (systemf execve)
 
 What this does
 - Generates a Brainfuck program that calls Linux execve to run curl with multipart/form-data and your API key
-- Uploads an input image to https://api.backgrounderase.net/v2
+- Uploads an input image to https://api.backgrounderase.com/v2
 - Saves a transparent PNG to out/output.png
 
 Folder layout
@@ -26,27 +26,27 @@ Note: This project uses the ajyoon/systemf interpreter (bundled in systemf/). It
 
 Get the code
 Option A: Sparse-checkout just the Brainfuck folder
-- git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-- cd ben-api-other-integrations
+- git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+- cd api-integrations
 - git sparse-checkout init --cone
 - git sparse-checkout set Brainfuck
 - git checkout main
 - cd Brainfuck
 
 Option B: SVN export a single folder
-- svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Brainfuck
+- svn export https://github.com/BackgroundErase/api-integrations/trunk/Brainfuck
 - cd Brainfuck
 
 Get an API key
-- You need a plan: https://backgrounderase.net/pricing
-- Generate/view your key: https://backgrounderase.net/account
+- You need a plan: https://backgrounderase.com/pricing
+- Generate/view your key: https://backgrounderase.com/account
 
 Create .env
 - echo 'API_KEY=YOUR_REAL_API_KEY_HERE' > .env
 
 Get a sample input image
 - mkdir -p assets
-- curl -L -o assets/input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+- curl -L -o assets/input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 
 Build
 - chmod +x build.sh run.sh scripts/genbf.py scripts/send_with_bf.sh
@@ -54,7 +54,7 @@ Build
   - Builds systemf (systemf/bin/systemf)
   - Detects the BF tape base (TAPE_BASE) via gdb or nm if available
   - Emits bf/main.bf which, when run under systemf, execve’s /usr/bin/curl with:
-    - -fsS -v -H "x-api-key: <API_KEY>" -F "image_file=@/abs/path" https://api.backgrounderase.net/v2 -o out/output.png
+    - -fsS -v -H "x-api-key: <API_KEY>" -F "image_file=@/abs/path" https://api.backgrounderase.com/v2 -o out/output.png
 
 Run
 Option A: Actually execute the Brainfuck program (systemf → execve → curl)
@@ -87,7 +87,7 @@ Troubleshooting
   - Install curl (sudo apt install -y curl) or adjust genbf.py to point to your curl path
 - API errors (HTTP 401/403/4xx)
   - Ensure .env has a valid API_KEY
-  - Confirm plan status: https://backgrounderase.net/pricing
+  - Confirm plan status: https://backgrounderase.com/pricing
 - Output file missing
   - Check network
   - Check write permissions for out/
@@ -108,6 +108,6 @@ Security
 
 License/credits
 - systemf by ajyoon (https://github.com/ajyoon/systemf)
-- BackgroundErase.NET API docs: https://api.backgrounderase.net/v2
+- BackgroundErase API docs: https://backgrounderase.com/docs
 
 That’s it! After a successful run, open out/output.png to see your transparent PNG result.

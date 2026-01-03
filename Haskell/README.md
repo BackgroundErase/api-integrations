@@ -1,26 +1,26 @@
 ```markdown
-# BEN2 Haskell API Client (CLI)
+# BackgroundErase Haskell API Client (CLI)
 
-Minimal Haskell CLI that uploads an image to BackgroundErase.NET API v2 and saves the returned PNG (with transparency) to disk.
+Minimal Haskell CLI that uploads an image to the BackgroundErase API API v2 and saves the returned PNG (with transparency) to disk.
 
-- API: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Buy/upgrade a plan: https://backgrounderase.net/pricing
+- API: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Buy/upgrade a plan: https://backgrounderase.com/pricing
 
 Executable name: `ben`
 
 ## Quick start
 
 1) Get an API key  
-- Create an account or sign in: https://backgrounderase.net/account  
-- You need a business subscription: https://backgrounderase.net/pricing
+- Create an account or sign in: https://backgrounderase.com/account  
+- You need a business subscription: https://backgrounderase.com/pricing
 
 2) Get this Haskell example (choose one)
 
 Git (sparse checkout):
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Haskell
 git checkout main   # or the repo's default branch if different
@@ -29,7 +29,7 @@ cd Haskell
 
 SVN export:
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Haskell
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Haskell
 cd Haskell
 ```
 
@@ -55,7 +55,7 @@ cabal update
 cabal build
 
 # (Optional) Try a sample image
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 
 # Run: ben <API_KEY> <input-image> <output.png>
 cabal run ben -- YOUR_API_KEY_HERE input.jpg output.png
@@ -87,7 +87,7 @@ Notes:
 
 ## What this client does
 
-- POSTs to: `https://api.backgrounderase.net/v2`
+- POSTs to: `https://api.backgrounderase.com/v2`
 - Authentication: header `x-api-key: YOUR_API_KEY`
 - Request body: multipart form with a single field `image_file` containing your input image
 - Response:
@@ -113,7 +113,7 @@ Main.hs (high level):
 
 - cabal-install 3.12+ (use GHCup to install/update)
 - GHC (recent version; 9.x recommended)
-- Internet access to reach `https://api.backgrounderase.net/v2`
+- Internet access to reach `https://api.backgrounderase.com/v2`
 
 Dependencies (handled by cabal):
 - base
@@ -147,7 +147,7 @@ cabal run ben -- "sk_live_123..." "C:\path\to\input.jpg" "C:\path\to\output.png"
 
 - 401 Unauthorized:
   - Double-check your API key (copy/paste correctness, no extra spaces).
-  - Ensure your plan allows API usage: https://backgrounderase.net/pricing
+  - Ensure your plan allows API usage: https://backgrounderase.com/pricing
 
 - 400/415/422 errors:
   - The input might be unreadable or unsupported. Try a common format like JPEG or PNG.
@@ -179,7 +179,7 @@ cabal run ben -- "sk_live_123..." "C:\path\to\input.jpg" "C:\path\to\output.png"
 
 ## Support
 
-- API key/account/billing: https://backgrounderase.net/account
-- Plans: https://backgrounderase.net/pricing
+- API key/account/billing: https://backgrounderase.com/account
+- Plans: https://backgrounderase.com/pricing
 - Issues with this example: please include your OS, cabal/GHC versions, the command you ran, and the printed status/error output.
 ```

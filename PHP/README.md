@@ -1,10 +1,10 @@
-# BackgroundErase.NET PHP example (multipart cURL)
+# BackgroundErase PHP example (multipart cURL)
 
-Minimal PHP client that uploads an image to BackgroundErase.NET and saves the cutout (PNG with transparency). Implements multipart/form-data using PHP cURL and the header x-api-key to call https://api.backgrounderase.net/v2.
+Minimal PHP client that uploads an image to the BackgroundErase API and saves the cutout (PNG with transparency). Implements multipart/form-data using PHP cURL and the header x-api-key to call https://api.backgrounderase.com/v2.
 
-- API endpoint: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Purchase/upgrade a plan: https://backgrounderase.net/pricing
+- API endpoint: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Purchase/upgrade a plan: https://backgrounderase.com/pricing
 
 File in this folder:
 - background_removal.php
@@ -31,8 +31,8 @@ php -v
 
 Option A: Clone only the PHP folder
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set PHP
 git checkout main
@@ -41,7 +41,7 @@ cd PHP
 
 Option B: Export only the PHP folder (no full git history)
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/PHP
+svn export https://github.com/BackgroundErase/api-integrations/trunk/PHP
 cd PHP
 ```
 
@@ -51,12 +51,12 @@ Option C: Copy the single file
 ## Quick start (CLI)
 
 1) Get an API key
-- Sign in: https://backgrounderase.net/account
-- If needed, buy/upgrade: https://backgrounderase.net/pricing
+- Sign in: https://backgrounderase.com/account
+- If needed, buy/upgrade: https://backgrounderase.com/pricing
 
 2) Download a sample image
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 3) Run the script
@@ -117,7 +117,7 @@ Notes:
 ## API specifics
 
 - HTTP method: POST
-- URL: https://api.backgrounderase.net/v2
+- URL: https://api.backgrounderase.com/v2
 - Headers:
   - x-api-key: YOUR_API_KEY
   - Do not set Content-Type manually; cURL sets the proper multipart boundary
@@ -165,8 +165,8 @@ done
 
 ## Support
 
-- Account/billing: https://backgrounderase.net/pricing
-- API key management: https://backgrounderase.net/account
+- Account/billing: https://backgrounderase.com/pricing
+- API key management: https://backgrounderase.com/account
 - If you open an issue, please include:
   - PHP version (php -v)
   - OS

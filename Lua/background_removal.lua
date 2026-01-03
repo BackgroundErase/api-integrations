@@ -83,7 +83,7 @@ local function background_removal(src, dst, api_key)
 
   local resp_chunks = {}
   local ok, code, resp_headers, status = https.request{
-    url = "https://api.backgrounderase.net/v2",
+    url = "https://api.backgrounderase.com/v2",
     method = "POST",
     headers = {
       ["Content-Type"]   = "multipart/form-data; boundary=" .. boundary,

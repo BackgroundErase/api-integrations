@@ -1,10 +1,10 @@
-# BackgroundErase.NET Bash/Shell client
+# BackgroundErase Bash/Shell client
 
-Minimal Bash script to remove image backgrounds via the BackgroundErase.NET v2 API. Uploads a single image and saves the returned PNG (with transparency).
+Minimal Bash script to remove image backgrounds via the BackgroundErase API. Uploads a single image and saves the returned PNG (with transparency).
 
-- API endpoint: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Plans/pricing: https://backgrounderase.net/pricing
+- API endpoint: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Plans/pricing: https://backgrounderase.com/pricing
 
 ## Requirements
 - Bash (#!/usr/bin/env bash)
@@ -17,14 +17,14 @@ Minimal Bash script to remove image backgrounds via the BackgroundErase.NET v2 A
 Option A: Download just the script
 ```bash
 curl -L -o background_removal.sh \
-  https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/Bash-Shell/background_removal.sh
+  https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/Bash-Shell/background_removal.sh
 chmod +x background_removal.sh
 ```
 
 Option B: Sparse-checkout this folder
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Bash-Shell
 git checkout main
@@ -34,7 +34,7 @@ chmod +x background_removal.sh
 
 Option C: Export with SVN
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Bash-Shell
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Bash-Shell
 cd Bash-Shell
 chmod +x background_removal.sh
 ```
@@ -42,7 +42,7 @@ chmod +x background_removal.sh
 Optional: sample input image
 ```bash
 curl -L -o input.jpg \
-  https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+  https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 ## Usage
@@ -110,7 +110,7 @@ CI usage (GitHub Actions snippet)
 - name: Remove background
   run: |
     chmod +x ./Bash-Shell/background_removal.sh
-    BG_ERASE_API_KEY=${{ secrets.BEN2_API_KEY }} \
+    BG_ERASE_API_KEY=${{ secrets.BG_ERASE_API_KEY }} \
       ./Bash-Shell/background_removal.sh ./input.jpg ./output.png
 ```
 

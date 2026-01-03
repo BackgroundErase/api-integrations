@@ -46,7 +46,7 @@ try {
   $content.Add($fileContent, "image_file", $fname)
 
   # Add API key header
-  $request = [System.Net.Http.HttpRequestMessage]::new([System.Net.Http.HttpMethod]::Post, "https://api.backgrounderase.net/v2")
+  $request = [System.Net.Http.HttpRequestMessage]::new([System.Net.Http.HttpMethod]::Post, "https://api.backgrounderase.com/v2")
   $request.Headers.Add("x-api-key", $ApiKey)
   $request.Content = $content
 

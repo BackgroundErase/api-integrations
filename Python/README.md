@@ -1,25 +1,25 @@
-# BEN2 Python API Client (single-file) for BackgroundErase.NET
+# BackgroundErase Python API Client (single-file)
 
-A minimal Python script that uploads an image to BackgroundErase.NET, removes the background via the v2 API, and saves the transparent PNG to disk.
+A minimal Python script that uploads an image to the BackgroundErase API, removes the background via the v2 API, and saves the transparent PNG to disk.
 
-- API: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Buy/upgrade a plan: https://backgrounderase.net/pricing
+- API: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Buy/upgrade a plan: https://backgrounderase.com/pricing
 
 This client uses only the Python standard library (no external dependencies).
 
 ## Quick start
 
 1) Get an API key
-- Create an account or sign in: https://backgrounderase.net/account
-- If needed, purchase a plan: https://backgrounderase.net/pricing
+- Create an account or sign in: https://backgrounderase.com/account
+- If needed, purchase a plan: https://backgrounderase.com/pricing
 
 2) Download this Python folder (one of the options below)
 
 Option A: Git sparse checkout (only the Python folder)
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Python
 git checkout main   # or replace 'main' with the repo's default branch if different
@@ -28,7 +28,7 @@ cd Python
 
 Option B: Subversion export (no git metadata)
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Python
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Python
 cd Python
 ```
 
@@ -39,7 +39,7 @@ cd Python
 
 4) Get a sample input image (or use your own)
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 5) Run the script
@@ -57,7 +57,7 @@ python3 background_removal.py
   - Minimal function background_removal(src, dst) that:
     - Detects content type from file extension
     - Builds a multipart/form-data POST with field name image_file
-    - Sends to https://api.backgrounderase.net/v2 with x-api-key header
+    - Sends to https://api.backgrounderase.com/v2 with x-api-key header
     - Writes the returned PNG bytes to the destination path
 
 Default paths in the script:
@@ -69,7 +69,7 @@ Edit these to suit your files, or import and call the function from your own cod
 ## Requirements
 
 - Python 3.8+ (uses only standard library: http.client, os, uuid, mimetypes)
-- Network access to https://api.backgrounderase.net
+- Network access to https://api.backgrounderase.com
 
 No third-party packages are required.
 
@@ -82,7 +82,7 @@ API key
 - Keep your API key secret. Do not commit it to public repos.
 
 Base URL
-- https://api.backgrounderase.net/v2 (no change needed)
+- https://api.backgrounderase.com/v2 (no change needed)
 
 MIME type detection
 - Determined via mimetypes.guess_type(filename) from the file extension.
@@ -98,7 +98,7 @@ You can import the function and call it from another module:
 from background_removal import background_removal, API_KEY
 
 # Optionally set API_KEY dynamically (e.g., from env var)
-# import os; background_removal.API_KEY = os.getenv("BEN2_API_KEY", API_KEY)
+# import os; background_removal.API_KEY = os.getenv("BG_ERASE_API_KEY", API_KEY)
 
 background_removal("path/to/photo.jpg", "path/to/output.png")
 ```
@@ -121,7 +121,7 @@ This script prints:
 
 - 401 Unauthorized
   - Check your API key is set correctly and active. Business plan may be required.
-  - Generate/manage at https://backgrounderase.net/account
+  - Generate/manage at https://backgrounderase.com/account
 
 - 400/415 Bad Request or Unsupported Media Type
   - Ensure the input file exists and is a valid image.
@@ -137,7 +137,7 @@ This script prints:
   - Temporary server issue. Retry after a short delay.
 
 - Proxy/Firewall/SSL issues
-  - Ensure your environment allows HTTPS to api.backgrounderase.net
+  - Ensure your environment allows HTTPS to api.backgrounderase.com
 
 ## Notes and tips
 
@@ -181,7 +181,7 @@ def background_removal(src, dst):
         "Content-Length": str(len(body))
     }
 
-    conn = http.client.HTTPSConnection("api.backgrounderase.net")
+    conn = http.client.HTTPSConnection("api.backgrounderase.com")
     conn.request("POST", "/v2", body=body, headers=headers)
     resp = conn.getresponse()
     out = resp.read()
@@ -202,13 +202,13 @@ background_removal(INPUT_PATH, OUTPUT_PATH)
 Tip: If you prefer, you can read the API key from an environment variable. Replace the API_KEY line with:
 ```python
 import os
-API_KEY = os.getenv("BEN2_API_KEY", "YOUR_API_KEY")
+API_KEY = os.getenv("BG_ERASE_API_KEY", "YOUR_API_KEY")
 ```
 
 ## Support
 
-- Account, billing, and API keys: https://backgrounderase.net/account
-- Plans/pricing: https://backgrounderase.net/pricing
+- Account, billing, and API keys: https://backgrounderase.com/account
+- Plans/pricing: https://backgrounderase.com/pricing
 - Report issues with this integration: open an issue or PR in the repository, including:
   - Python version
   - OS/environment

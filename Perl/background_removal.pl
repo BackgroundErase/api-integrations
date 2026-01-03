@@ -23,7 +23,7 @@ sub background_removal {
     my $ua = LWP::UserAgent->new( agent => 'BackgroundEraseClient/1.0', timeout => 60 );
 
     my $req = POST(
-        'https://api.backgrounderase.net/v2',
+        'https://api.backgrounderase.com/v2',
         Content_Type => 'form-data',
         Content      => [
             image_file => [ $src, $fname, 'Content-Type' => $ctype ],

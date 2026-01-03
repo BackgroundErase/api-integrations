@@ -4,16 +4,16 @@
 
 Remove the background of the current costume in Scratch with one block. This project contains:
 - A Scratch 3.0 extension that uploads the current costume (PNG/JPG bitmap) to a local proxy
-- A Node.js proxy that forwards the image to BackgroundErase.NET and returns a PNG with transparency
+- A Node.js proxy that forwards the image to api.backgrounderase.com and returns a PNG with transparency
 - The extension then creates a new costume "(bg)" with the cutout and selects it
 
 Folders and files:
 - extensions/ben-bg/index.js — Scratch extension (CommonJS)
 - proxy/server.js — Local proxy (Express + Multer + CORS)
 
-API docs: https://api.backgrounderase.net/v2  
-Get your API key: https://backgrounderase.net/account  
-Pricing: https://backgrounderase.net/pricing
+API docs: https://api.backgrounderase.com/v2  
+Get your API key: https://backgrounderase.com/account  
+Pricing: https://backgrounderase.com/pricing
 
 Note: SVG costumes are not supported. Use Scratch’s “Convert to Bitmap” first.
 
@@ -24,7 +24,7 @@ Quick start
 1) Prerequisites
 - Node.js 18+ (for built-in fetch/FormData/Blob)
 - NPM or Yarn
-- A BackgroundErase.NET API key (BEN_API_KEY)
+- A BackgroundErase API key (BG_ERASE_API_KEY)
 - Scratch 3 development setup (scratch-gui + scratch-vm) or any Scratch fork where you can add a custom VM extension
 
 2) Set up and run the local proxy
@@ -32,11 +32,11 @@ Quick start
 - Install dependencies and run:
   npm install express multer cors
   # macOS/Linux
-  export BEN_API_KEY=YOUR_API_KEY
+  export BG_ERASE_API_KEY=YOUR_API_KEY
   node server.js
 
   # Windows (PowerShell)
-  setx BEN_API_KEY "YOUR_API_KEY"
+  setx BG_ERASE_API_KEY "YOUR_API_KEY"
   # restart the shell so the env var is picked up, then:
   node server.js
 
@@ -72,7 +72,7 @@ Quick start
   {
     name: 'Background Remover',
     extensionId: 'benbg',
-    collaborator: 'BackgroundErase.NET',
+    collaborator: 'BackgroundErase',
     iconURL: null, // you can add a local icon if you have one
     insetIconURL: null,
     description: 'Remove the background of the current costume',
@@ -105,7 +105,7 @@ How it works
 
 - The extension tries multiple ways to read the current costume’s bytes (inline asset, storage cache, storage.load)
 - It sends the bitmap bytes to the proxy as multipart form-data with field image_file
-- The proxy forwards the image to https://api.backgrounderase.net/v2 with your BEN_API_KEY
+- The proxy forwards the image to https://api.backgrounderase.com/v2 with your BG_ERASE_API_KEY
 - The API returns a PNG (with transparency)
 - The extension:
   - Registers the PNG with Scratch storage to get an assetId
@@ -118,7 +118,7 @@ How it works
 Configuration
 
 - API key
-  - Set BEN_API_KEY in your shell before starting the proxy
+  - Set BG_ERASE_API_KEY in your shell before starting the proxy
   - Keep your API key secret. Never hardcode it in the extension or send it to the browser
 
 - Proxy URL
@@ -175,8 +175,8 @@ Troubleshooting
   - Verify CORS origins in proxy/server.js match your Scratch GUI URL
 
 - Error: “API returned an error”
-  - Confirm BEN_API_KEY is set and valid
-  - Check your plan/limits: https://backgrounderase.net/pricing
+  - Confirm BG_ERASE_API_KEY is set and valid
+  - Check your plan/limits: https://backgrounderase.com/pricing
   - Inspect server logs for the upstream API response
 
 - Nothing happens after clicking the block
@@ -187,8 +187,8 @@ Troubleshooting
 
 Security and privacy
 
-- Your BEN_API_KEY must live on the server (proxy), never in client code
-- Images are transmitted to BackgroundErase.NET for processing
+- Your BG_ERASE_API_KEY must live on the server (proxy), never in client code
+- Images are transmitted to the BackgroundErase API for processing
 - The proxy saves images to disk by default (proxy/saved). Remove this if not desired
 
 --------------------------------------------------------------------------------
@@ -203,7 +203,7 @@ Project structure
 - proxy/server.js
   - Express + Multer + CORS
   - POST /erase accepts multipart form-data field image_file
-  - Forwards to https://api.backgrounderase.net/v2 with x-api-key header
+  - Forwards to https://api.backgrounderase.com/v2 with x-api-key header
   - Returns raw PNG bytes; also saves a local copy to ./saved
 
 --------------------------------------------------------------------------------
@@ -230,7 +230,7 @@ Package.json example for the proxy (optional)
 Usage:
 - cd proxy
 - npm install
-- BEN_API_KEY=YOUR_API_KEY npm start
+- BG_ERASE_API_KEY=YOUR_API_KEY npm start
 
 --------------------------------------------------------------------------------
 
@@ -244,7 +244,7 @@ Notes for alternative setups
 - Deploying the proxy
   - Any Node host will do (Render, Fly, Railway, a VPS)
   - Ensure:
-    - BEN_API_KEY is set in server env
+    - BG_ERASE_API_KEY is set in server env
     - CORS allows your Scratch origin
     - Update this.proxyURL in the extension to your public URL
 
@@ -258,7 +258,7 @@ License
 
 Credits
 
-- Background removal by BackgroundErase.NET
+- Background removal by BackgroundErase
 - Built for Scratch 3.0 extension API and Node.js 18+ proxy setup
 
 Issues and contributions welcome. When filing an issue, include:

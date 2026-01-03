@@ -35,7 +35,7 @@ class BenClient {
 
   final String apiKey;
 
-  static const _host = 'api.backgrounderase.net';
+  static const _host = 'api.backgrounderase.com';
   static const _path = '/v2';
 
   /// Upload a file from a filesystem path. Returns result bytes (PNG or same type),

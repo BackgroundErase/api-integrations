@@ -1,17 +1,17 @@
-# BEN2 C++ API Client (single-file, libcurl)
+# BackgroundErase C++ API Client (single-file, libcurl)
 
-Minimal C++17 client for BackgroundErase.NET. Upload an image, receive a cutout (PNG with transparency), and save it locally.
+Minimal C++17 client for the BackgroundErase API. Upload an image, receive a cutout (PNG with transparency), and save it locally.
 
-- API endpoint: https://api.backgrounderase.net/v2
+- API endpoint: https://api.backgrounderase.com/v2
 - Field name: image_file (multipart/form-data)
 - Response: PNG bytes on success (HTTP 200)
-- Get your API key: https://backgrounderase.net/account
-- Plans: https://backgrounderase.net/pricing
+- Get your API key: https://backgrounderase.com/account
+- Plans: https://backgrounderase.com/pricing
 
 Requirements
 - C++17 compiler (GCC 9+, Clang 10+, MSVC 2019+ recommended)
 - libcurl with SSL/TLS enabled
-- Internet access to api.backgrounderase.net
+- Internet access to api.backgrounderase.com
 
 Files
 - background_removal.cpp (single-file CLI)
@@ -19,8 +19,8 @@ Files
 Get the code (this folder only)
 Option A: Git sparse checkout
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set C++
 git checkout main
@@ -29,13 +29,13 @@ cd C++
 
 Option B: SVN export
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/C++
+svn export https://github.com/BackgroundErase/api-integrations/trunk/C++
 cd C++
 ```
 
 Get an API key
-- Sign in: https://backgrounderase.net/account
-- If needed, buy/upgrade a plan: https://backgrounderase.net/pricing
+- Sign in: https://backgrounderase.com/account
+- If needed, buy/upgrade a plan: https://backgrounderase.com/pricing
 - Copy your API key (you’ll pass it via env var, CLI arg, or compile-time default)
 
 Build
@@ -107,7 +107,7 @@ Run
 
 1) Get a test image:
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 2) Provide your API key (choose one):
@@ -141,7 +141,7 @@ Program help / exit codes
   - 2: HTTP/libcurl error (see stderr for details)
 
 What the code does
-- Sends a multipart/form-data POST to https://api.backgrounderase.net/v2
+- Sends a multipart/form-data POST to https://api.backgrounderase.com/v2
   - Field name: image_file
   - Filename and MIME type inferred from your input’s extension
 - Adds header: x-api-key: YOUR_KEY
@@ -172,9 +172,9 @@ Troubleshooting
   - Honor system proxy envs (HTTP_PROXY/HTTPS_PROXY). Removing Expect: 100-continue (already in code) helps with some proxies.
 
 API links
-- Dashboard, API key: https://backgrounderase.net/account
-- Pricing: https://backgrounderase.net/pricing
-- Endpoint used here: https://api.backgrounderase.net/v2
+- Dashboard, API key: https://backgrounderase.com/account
+- Pricing: https://backgrounderase.com/pricing
+- Endpoint used here: https://api.backgrounderase.com/v2
 
 Contributing
 - Issues and PRs are welcome. Please include:

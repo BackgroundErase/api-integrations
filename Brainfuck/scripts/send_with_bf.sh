@@ -22,7 +22,7 @@ fi
 curl -fsS \
   -H "x-api-key: ${API_KEY}" \
   -F "image_file=@${SRC_ABS}" \
-  https://api.backgrounderase.net/v2 \
+  https://api.backgrounderase.com/v2 \
   -o "$OUT_ABS"
 
 echo "✅ Saved: $OUT_ABS"

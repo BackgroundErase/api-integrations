@@ -12,8 +12,8 @@ docker run -p 8585:8585 ben-api
 ```
 
 ## Generate api token 
-You must have a business subscription that can be found at https://backgrounderase.net/pricing. To generate the token navigate to
-https://backgrounderase.net/account and scroll to the bottom of the page.
+You must have a business subscription that can be found at https://backgrounderase.com/pricing. To generate the token navigate to
+https://backgrounderase.com/account and scroll to the bottom of the page.
 
 ## Example Request
 create example.py
@@ -30,7 +30,7 @@ def test_flask_server():
     # Your API key
     headers = {
         'Content-Type': 'application/json',
-        'x-api-key': 'your_ben_api_token' # your ben api token here
+        'x-api-key': 'BG_ERASE_API_KEY' # your BackgroundErase API key here
     }
 
     with open('image.jpg', 'rb') as image_file: # your image file path
@@ -64,4 +64,4 @@ if __name__ == "__main__":
 
 
 ## API Documentation
-For full API documentation visit: https://backgrounderase.net/docs
+For full API documentation visit: https://backgrounderase.com/docs

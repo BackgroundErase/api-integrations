@@ -10,7 +10,7 @@ async function backgroundRemoval(srcPath: string, dstPath: string): Promise<stri
     const boundary = "----" + Date.now().toString(16);
 
     const options: https.RequestOptions = {
-      hostname: "api.backgrounderase.net",
+      hostname: "api.backgrounderase.com",
       path: "/v2",
       method: "POST",
       headers: {

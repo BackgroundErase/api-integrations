@@ -17,11 +17,11 @@ public enum BEN2Error: Error, LocalizedError {
 
 public final class BEN2Client {
     public static let shared = BEN2Client(
-        apiKey: Bundle.main.object(forInfoDictionaryKey: "BEN2_API_KEY") as? String ?? "YOUR_API_KEY"
+        apiKey: Bundle.main.object(forInfoDictionaryKey: "BG_ERASE_API_KEY") as? String ?? "YOUR_API_KEY"
     )
 
     private let apiKey: String
-    private let baseURL = URL(string: "https://api.backgrounderase.net/v2")!
+    private let baseURL = URL(string: "https://api.backgrounderase.com/v2")!
     private let session: URLSession
 
     public init(apiKey: String, session: URLSession = .shared) {

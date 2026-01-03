@@ -49,7 +49,7 @@ func backgroundRemoval(src, dst, apiKey string) error {
 		return fmt.Errorf("close multipart writer: %w", err)
 	}
 
-	req, err := http.NewRequest("POST", "https://api.backgrounderase.net/v2", &body)
+	req, err := http.NewRequest("POST", "https://api.backgrounderase.com/v2", &body)
 	if err != nil {
 		return fmt.Errorf("new request: %w", err)
 	}

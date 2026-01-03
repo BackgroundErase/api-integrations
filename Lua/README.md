@@ -1,10 +1,10 @@
-# BackgroundErase.NET Lua CLI (BEN2)
+# BackgroundErase Lua CLI
 
-A tiny Lua command-line helper that uploads an image to BackgroundErase.NET and saves the cutout (PNG with transparency). It uses multipart/form-data over HTTPS and returns raw PNG bytes.
+A tiny Lua command-line helper that uploads an image to the BackgroundErase API and saves the cutout (PNG with transparency). It uses multipart/form-data over HTTPS and returns raw PNG bytes.
 
-- API: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Plans/pricing: https://backgrounderase.net/pricing
+- API: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Plans/pricing: https://backgrounderase.com/pricing
 
 What it does:
 - Reads an input image from disk
@@ -47,8 +47,8 @@ If this prints OK, you’re ready.
 ## Get an API key
 
 You need an active plan to call the API:
-1) Sign in or create an account: https://backgrounderase.net/account  
-2) If needed, purchase/upgrade: https://backgrounderase.net/pricing  
+1) Sign in or create an account: https://backgrounderase.com/account  
+2) If needed, purchase/upgrade: https://backgrounderase.com/pricing  
 3) Copy your API key from the Account page
 
 
@@ -56,8 +56,8 @@ You need an active plan to call the API:
 
 Option A: Git sparse-checkout
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Lua
 git checkout main
@@ -66,7 +66,7 @@ cd Lua
 
 Option B: SVN export (download just this folder)
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Lua
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Lua
 cd Lua
 ```
 
@@ -103,7 +103,7 @@ lua background_removal.lua .\input.jpg .\output.png
 
 Get a sample image:
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 Exit codes:
@@ -144,7 +144,7 @@ Windows:
 - On non-200, prints an error including HTTP status
 
 API endpoint used:
-- POST https://api.backgrounderase.net/v2
+- POST https://api.backgrounderase.com/v2
 - Form field: image_file
 - Returns: raw PNG bytes
 
@@ -208,7 +208,7 @@ luarocks install luasocket
 luarocks install luasec
 
 # 2) Get an image
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 
 # 3) Run (using env var)
 export BG_ERASE_API_KEY=YOUR_API_KEY

@@ -1,10 +1,10 @@
-# BackgroundErase.NET Scala Client (single-file, scala-cli)
+# BackgroundErase Scala Client (single-file, scala-cli)
 
-Minimal Scala 3 example that uploads an image to BackgroundErase.NET v2 and saves the cutout (PNG with transparency). Uses Java 11+ HttpClient and a hand-built multipart/form-data body.
+Minimal Scala 3 example that uploads an image to BackgroundErase and saves the cutout (PNG with transparency). Uses Java 11+ HttpClient and a hand-built multipart/form-data body.
 
-- API: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Plans: https://backgrounderase.net/pricing
+- API: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Plans: https://backgrounderase.com/pricing
 
 ## What this is
 
@@ -16,14 +16,14 @@ Minimal Scala 3 example that uploads an image to BackgroundErase.NET v2 and save
 
 - Java 11+ JDK on your PATH (java -version should show 11 or newer)
 - scala-cli (https://scala-cli.virtuslab.org/install)
-- A BackgroundErase.NET API key (paid plan)
+- A BackgroundErase API key (paid plan)
 
 ## Get the code
 
 Option A: Sparse-checkout this folder from the repo
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Scala
 git checkout main   # or the repo’s default branch if different
@@ -32,7 +32,7 @@ cd Scala
 
 Option B: Export just this directory with Subversion
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Scala
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Scala
 cd Scala
 ```
 
@@ -42,8 +42,8 @@ Option C: Copy the single file
 ## Quick start
 
 1) Get an API key  
-- Sign in or create an account: https://backgrounderase.net/account  
-- If needed, purchase/upgrade a plan: https://backgrounderase.net/pricing
+- Sign in or create an account: https://backgrounderase.com/account  
+- If needed, purchase/upgrade a plan: https://backgrounderase.com/pricing
 
 2) Install prerequisites  
 - Install a JDK 11+  
@@ -51,7 +51,7 @@ Option C: Copy the single file
 
 3) Grab a sample image (optional)
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 4) Run it (choose one)
@@ -110,7 +110,7 @@ scala-cli run .\BackgroundRemoval.scala -- .\input.jpg .\output.png
 
 ## How it works (internals at a glance)
 
-- Java 11 HttpClient builds a POST to https://api.backgrounderase.net/v2
+- Java 11 HttpClient builds a POST to https://api.backgrounderase.com/v2
 - Multipart form-data is constructed manually with a random boundary
 - The file is sent under the field name image_file
 - Content-Type is inferred via Files.probeContentType, with application/octet-stream fallback
@@ -127,9 +127,9 @@ Common errors
 - 401/403 Unauthorized/Forbidden
   - The API key is missing, invalid, or not entitled. Verify:
     - You passed --api-key or set BG_ERASE_API_KEY
-    - Your plan is active: https://backgrounderase.net/pricing
+    - Your plan is active: https://backgrounderase.com/pricing
 - 404 Not Found
-  - Check the endpoint (should be https://api.backgrounderase.net/v2)
+  - Check the endpoint (should be https://api.backgrounderase.com/v2)
 - 413 Payload Too Large
   - The input image exceeds size limits for your plan
 - 415 Unsupported Media Type
@@ -160,7 +160,7 @@ Timeouts
     .build()
 
   val req = HttpRequest.newBuilder()
-    .uri(URI.create("https://api.backgrounderase.net/v2"))
+    .uri(URI.create("https://api.backgrounderase.com/v2"))
     .timeout(java.time.Duration.ofSeconds(60))
     ...
   ```
@@ -179,8 +179,8 @@ Timeouts
 ## Support
 
 - If you believe the issue is with the API or your account:
-  - Check your plan: https://backgrounderase.net/pricing
-  - Manage API keys: https://backgrounderase.net/account
+  - Check your plan: https://backgrounderase.com/pricing
+  - Manage API keys: https://backgrounderase.com/account
 - For code issues in this example, please include:
   - OS, Java version (java -version), scala-cli version (scala-cli version)
   - Command you ran

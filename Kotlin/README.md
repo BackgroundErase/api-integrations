@@ -16,11 +16,11 @@ Screenshot:
 - Android Studio (latest)
 - JDK 11
 - Android minSdk 24, target/compileSdk 36
-- A Background Erase API key (x-api-key for https://api.backgrounderase.net/v2)
+- A Background Erase API key (x-api-key for https://api.backgrounderase.com/v2)
 
 ## Generate api token 
-You must have a business subscription that can be found at https://backgrounderase.net/pricing. To generate the token navigate to
-https://backgrounderase.net/account and scroll to the bottom of the page.
+You must have a business subscription that can be found at https://backgrounderase.com/pricing. To generate the token navigate to
+https://backgrounderase.com/account and scroll to the bottom of the page.
 
 ## Quick start
 
@@ -31,15 +31,15 @@ https://backgrounderase.net/account and scroll to the bottom of the page.
   private val apiKey = "YOUR_API_KEY_HERE"
 
 - Recommended: keep secrets out of source. Add to local.properties:
-  BEN_API_KEY=your_real_key_here
+  BG_ERASE_API_KEY=your_real_key_here
   Then in app/build.gradle.kts:
   android {
       defaultConfig {
-          buildConfigField("String", "BEN_API_KEY", "\"${project.findProperty("BEN_API_KEY") ?: ""}\"")
+          buildConfigField("String", "BG_ERASE_API_KEY", "\"${project.findProperty("BG_ERASE_API_KEY") ?: ""}\"")
       }
   }
-  And use BuildConfig.BEN_API_KEY in MainActivity:
-  private val apiKey = BuildConfig.BEN_API_KEY
+  And use BuildConfig.BG_ERASE_API_KEY in MainActivity:
+  private val apiKey = BuildConfig.BG_ERASE_API_KEY
 
 3) Ensure INTERNET permission is declared (AndroidManifest.xml):
 <uses-permission android:name="android.permission.INTERNET"/>
@@ -57,7 +57,7 @@ Note: On Android 10+ (API 29+), saving to Downloads/Photos via MediaStore needs 
 See Kotlin/build.gradle.kts for the full list.
 
 ## How it works
-- BENClient.removeBackgroundAndSaveToDownloads streams the picked image as multipart/form-data (form field: image_file) to https://api.backgrounderase.net/v2 with the x-api-key header.
+- BENClient.removeBackgroundAndSaveToDownloads streams the picked image as multipart/form-data (form field: image_file) to https://api.backgrounderase.com/v2 with the x-api-key header.
 - On success, it inspects the response Content-Type (png or jpg) and writes the returned bytes to Downloads via MediaStore, returning the saved Uri.
 - MainActivity:
   - Lets the user pick an image via system pickers (no storage permission required).

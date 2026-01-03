@@ -5,6 +5,7 @@ require "securerandom"
 require "openssl"  # <-- add this
 
 API_KEY = "YOUR_API_KEY_HERE" 
+
 def guess_mime(path)
   ext = File.extname(path).downcase
   {
@@ -68,7 +69,7 @@ def background_removal(src, dst, api_key: API_KEY)
   tail = "#{crlf}--#{boundary}--#{crlf}"
   body = head.b + crlf.b + filedata + tail.b
 
-  uri  = URI("https://api.backgrounderase.net/v2")
+  uri  = URI("https://api.backgrounderase.com/v2")
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
   http.open_timeout = 30

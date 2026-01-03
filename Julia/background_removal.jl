@@ -32,7 +32,7 @@ function background_removal(src::String, dst::String, api_key::String)
     ]
 
     # Send POST request
-    resp = HTTP.request("POST", "https://api.backgrounderase.net/v2", headers, body)
+    resp = HTTP.request("POST", "https://api.backgrounderase.com/v2", headers, body)
 
     if resp.status == 200
         open(dst, "w") do io

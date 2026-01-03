@@ -1,10 +1,10 @@
-# BackgroundErase.NET TypeScript example (background removal)
+# BackgroundErase TypeScript example (background removal)
 
-Minimal TypeScript example that uploads an image to BackgroundErase.NET and saves the cutout (PNG with transparency) to disk.
+Minimal TypeScript example that uploads an image to the BackgroundErase API and saves the cutout (PNG with transparency) to disk.
 
-- API endpoint: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Plans/pricing: https://backgrounderase.net/pricing
+- API endpoint: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Plans/pricing: https://backgrounderase.com/pricing
 
 The example uses only Node’s built‑in modules (https, fs, path). No third‑party dependencies.
 
@@ -23,16 +23,16 @@ The example uses only Node’s built‑in modules (https, fs, path). No third‑
 
 ## 1) Get an API key
 
-- Sign in: https://backgrounderase.net/account
-- If needed, purchase/upgrade: https://backgrounderase.net/pricing
+- Sign in: https://backgrounderase.com/account
+- If needed, purchase/upgrade: https://backgrounderase.com/pricing
 - You’ll use the key in the x-api-key header
 
 ## 2) Get the code
 
 Option A: Git sparse checkout
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set TypeScript
 git checkout main
@@ -41,13 +41,13 @@ cd TypeScript
 
 Option B: SVN export (no git history)
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/TypeScript
+svn export https://github.com/BackgroundErase/api-integrations/trunk/TypeScript
 cd TypeScript
 ```
 
 Optional: Grab a sample input image
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 ## 3) Configure your API key
@@ -59,11 +59,11 @@ const API_KEY = "YOUR_API_KEY_HERE";
 
 Tip (optional): You can load from an environment variable instead:
 ```ts
-const API_KEY = process.env.BEN2_API_KEY || "YOUR_API_KEY_HERE";
+const API_KEY = process.env.BG_ERASE_API_KEY || "YOUR_API_KEY_HERE";
 ```
 Then run with:
 ```bash
-BEN2_API_KEY=sk_live_xxx npx ts-node backgroundRemoval.ts input.jpg output.png
+BG_ERASE_API_KEY=sk_live_xxx npx ts-node backgroundRemoval.ts input.jpg output.png
 ```
 
 Never commit real API keys to source control.
@@ -134,7 +134,7 @@ node dist/backgroundRemoval.js input.jpg output.png
 
 ## How it works (quick notes)
 
-- Sends a multipart/form-data POST to https://api.backgrounderase.net/v2 with field name image_file
+- Sends a multipart/form-data POST to https://api.backgrounderase.com/v2 with field name image_file
 - Sets x-api-key header with your key
 - Streams the response to the destination path
 - If the response Content-Type isn’t image/*, it captures the error body and rejects

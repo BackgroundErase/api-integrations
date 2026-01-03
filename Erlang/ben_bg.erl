@@ -24,7 +24,7 @@ background_removal(Src, Dst, ApiKey) ->
     Body = iolist_to_binary([HeaderPart, FileBin, FooterPart]),
 
     Headers = [{"x-api-key", ApiKey}],
-    Url = "https://api.backgrounderase.net/v2",
+    Url = "https://api.backgrounderase.com/v2",
 
     case httpc:request(post, {Url, Headers, ContentType, Body}, [], []) of
         {ok, {{_, 200, _}, _RespHeaders, RespBody}} ->

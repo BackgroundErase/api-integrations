@@ -1,10 +1,10 @@
-# BEN2 Julia API Client (CLI script)
+# BackgroundErase Julia API Client (CLI script)
 
-A tiny Julia script that uploads an image to BackgroundErase.NET and saves the cutout as a PNG with transparency.
+A tiny Julia script that uploads an image to the BackgroundErase API and saves the cutout as a PNG with transparency.
 
-- API: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Plans/pricing: https://backgrounderase.net/pricing
+- API: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Plans/pricing: https://backgrounderase.com/pricing
 
 The API returns raw PNG bytes. This script:
 - Builds a multipart/form-data request with field name image_file
@@ -25,8 +25,8 @@ julia -e 'using Pkg; Pkg.add(["HTTP","UUIDs","MIMEs"])'
 
 Option A: Clone only the Julia folder from the repo
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Julia
 git checkout main   # replace if your default branch differs
@@ -35,25 +35,25 @@ cd Julia
 
 Option B: Export the Julia folder via SVN
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Julia
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Julia
 cd Julia
 ```
 
 Option C: Download just the single file
 ```bash
 curl -L -o background_removal.jl \
-  https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/Julia/background_removal.jl
+  https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/Julia/background_removal.jl
 ```
 
 Get a sample input image:
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 ## Generate an API key
 
-- Sign in or create an account: https://backgrounderase.net/account  
-- If needed, purchase/upgrade: https://backgrounderase.net/pricing  
+- Sign in or create an account: https://backgrounderase.com/account  
+- If needed, purchase/upgrade: https://backgrounderase.com/pricing  
 - Copy your API key from your account page
 
 ## Usage (CLI)
@@ -67,14 +67,14 @@ Recommended: pass the key via an environment variable so it isn’t stored in sh
 
 macOS/Linux:
 ```bash
-export BEN2_API_KEY="your_key_here"
-julia background_removal.jl "$BEN2_API_KEY" input.jpg output.png
+export BG_ERASE_API_KEY="your_key_here"
+julia background_removal.jl "$BG_ERASE_API_KEY" input.jpg output.png
 ```
 
 Windows (PowerShell):
 ```powershell
-$env:BEN2_API_KEY="your_key_here"
-julia background_removal.jl $env:BEN2_API_KEY input.jpg output.png
+$env:BG_ERASE_API_KEY="your_key_here"
+julia background_removal.jl $env:BG_ERASE_API_KEY input.jpg output.png
 ```
 
 If successful, you’ll see:
@@ -109,8 +109,8 @@ Supported inputs (for MIME detection):
 ## Troubleshooting
 
 - 401 Unauthorized
-  - Make sure your API key is correct and active (https://backgrounderase.net/account).
-  - Ensure you haven’t exceeded your plan usage (https://backgrounderase.net/pricing).
+  - Make sure your API key is correct and active (https://backgrounderase.com/account).
+  - Ensure you haven’t exceeded your plan usage (https://backgrounderase.com/pricing).
 
 - 415 Unsupported Media Type
   - Ensure your input file is a valid image (jpg/jpeg/png/heic/webp recommended).
@@ -130,7 +130,7 @@ Supported inputs (for MIME detection):
 ## License and contributions
 
 Feel free to open issues or PRs in the repo:
-- https://github.com/PramaLLC/ben-api-other-integrations
+- https://github.com/BackgroundErase/api-integrations
 
 Please include:
 - Julia version

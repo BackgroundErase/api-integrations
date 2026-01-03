@@ -21,7 +21,7 @@ def background_removal(src, dst):
         "Content-Length": str(len(body))
     }
 
-    conn = http.client.HTTPSConnection("api.backgrounderase.net")
+    conn = http.client.HTTPSConnection("api.backgrounderase.com")
     conn.request("POST", "/v2", body=body, headers=headers)
     resp = conn.getresponse()
     out = resp.read()

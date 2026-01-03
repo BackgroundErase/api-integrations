@@ -1,12 +1,12 @@
-# BackgroundErase.NET Assembly CLI (macOS arm64 + Linux x86_64)
+# BackgroundErase Assembly CLI (macOS arm64 + Linux x86_64)
 
-Minimal assembly examples that call the BackgroundErase.NET v2 API via curl to remove image backgrounds. Works on:
+Minimal assembly examples that call the BackgroundErase API via curl to remove image backgrounds. Works on:
 - macOS Apple Silicon (arm64) via clang/Apple assembler
 - Linux x86_64 via NASM + GCC
 
-API: https://api.backgrounderase.net/v2  
-Get your API key: https://backgrounderase.net/account  
-Plans: https://backgrounderase.net/pricing
+API: https://api.backgrounderase.com/v2  
+Get your API key: https://backgrounderase.com/account  
+Plans: https://backgrounderase.com/pricing
 
 ## What it does
 
@@ -20,8 +20,8 @@ macOS uses absolute /usr/bin/curl; Linux searches curl in PATH.
 
 Option A: Git sparse checkout
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Assembly
 git checkout main   # or replace with repo’s default branch if different
@@ -30,13 +30,13 @@ cd Assembly
 
 Option B: SVN export (no git needed)
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Assembly
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Assembly
 cd Assembly
 ```
 
 Optional: Sample input image
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 ## Build
@@ -84,7 +84,7 @@ Results:
   - Fallback: both sources include a DEFAULT_API_KEY constant ("YOUR_API_KEY"). You can edit it to hardcode a key, but environment variables are recommended.
 
 - Endpoint and fields
-  - URL: https://api.backgrounderase.net/v2
+  - URL: https://api.backgrounderase.com/v2
   - Header: x-api-key: <your_key>
   - Multipart form field: image_file=@<path>
 
@@ -110,7 +110,7 @@ Results:
 
 - HTTP 401/403 or empty output
   - Invalid or missing API key.
-  - Ensure your plan is active: https://backgrounderase.net/pricing
+  - Ensure your plan is active: https://backgrounderase.com/pricing
   - Verify BG_ERASE_API_KEY is set in the same shell session.
 
 - Permission errors writing the output

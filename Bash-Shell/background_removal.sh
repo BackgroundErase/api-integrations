@@ -43,7 +43,7 @@ curl \
   --fail --silent --show-error \
   -H "x-api-key: ${API_KEY}" \
   -F "image_file=@${SRC};type=${CTYPE};filename=$(basename "$SRC")" \
-  "https://api.backgrounderase.net/v2" \
+  "https://api.backgrounderase.com/v2" \
   -o "$DST"
 
 echo "✅ Saved: $DST"

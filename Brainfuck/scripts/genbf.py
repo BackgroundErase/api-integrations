@@ -67,7 +67,7 @@ def main():
         f"x-api-key: {api_key}",              # 5
         "-F",                                 # 6
         f"image_file=@{img_path}",            # 7
-        "https://api.backgrounderase.net/v2", # 8
+        "https://api.backgrounderase.com/v2", # 8
         "-o",                                 # 9
         out_abs,                              #10
     ]
@@ -97,7 +97,7 @@ def main():
         TAPE_BASE + str_cell[5],  # "x-api-key: …"
         TAPE_BASE + str_cell[6],  # "-F"
         TAPE_BASE + str_cell[7],  # "image_file=@/abs/..."
-        TAPE_BASE + str_cell[8],  # "https://api.backgrounderase.net/v2"
+        TAPE_BASE + str_cell[8],  # "https://api.backgrounderase.com/v2"
         TAPE_BASE + str_cell[9],  # "-o"
         TAPE_BASE + str_cell[10], # "/abs/.../out/output.png"
         0                         # NULL

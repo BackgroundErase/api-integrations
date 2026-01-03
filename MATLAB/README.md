@@ -1,10 +1,10 @@
-# BEN2 MATLAB API Client (Background removal)
+# BackgroundErase MATLAB API Client (Background removal)
 
-A single-file MATLAB function that uploads an image to BackgroundErase.NET, saves the cutout as PNG (with transparency), and shows a side‑by‑side before/after preview.
+A single-file MATLAB function that uploads an image to the BackgroundErase API, saves the cutout as PNG (with transparency), and shows a side‑by‑side before/after preview.
 
-- API endpoint: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Plans: https://backgrounderase.net/pricing
+- API endpoint: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Plans: https://backgrounderase.com/pricing
 
 ## Requirements
 
@@ -16,8 +16,8 @@ A single-file MATLAB function that uploads an image to BackgroundErase.NET, save
 
 Option A: Clone only the MATLAB folder
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set MATLAB
 git checkout main
@@ -26,7 +26,7 @@ cd MATLAB
 
 Option B: SVN export just this folder
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/MATLAB
+svn export https://github.com/BackgroundErase/api-integrations/trunk/MATLAB
 cd MATLAB
 ```
 
@@ -36,8 +36,8 @@ Option C: Direct download the function
 
 ## Get an API key
 
-1) Sign in or create an account: https://backgrounderase.net/account  
-2) If needed, purchase/upgrade a plan: https://backgrounderase.net/pricing  
+1) Sign in or create an account: https://backgrounderase.com/account  
+2) If needed, purchase/upgrade a plan: https://backgrounderase.com/pricing  
 3) Copy your API key from the account page (near the bottom)
 
 Keep your key private. Do not commit it to source control.
@@ -46,7 +46,7 @@ Keep your key private. Do not commit it to source control.
 
 Download a sample input image:
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 In MATLAB:
@@ -59,7 +59,7 @@ background_removal('input.jpg', 'output.png', 'YOUR_API_KEY');
 ```
 
 What happens:
-- Uploads the image as multipart/form-data (field name image_file) to https://api.backgrounderase.net/v2
+- Uploads the image as multipart/form-data (field name image_file) to https://api.backgrounderase.com/v2
 - Saves the result as output.png (PNG with transparency)
 - Opens a figure showing Original vs Background Removed side by side
 
@@ -72,7 +72,7 @@ background_removal(src, dst, api_key)
 
 - src: path to an input image (jpg, jpeg, png, heic, webp, others fallback to application/octet-stream)
 - dst: path to save the resulting PNG (e.g., output.png)
-- api_key: your BackgroundErase.NET API key string
+- api_key: your BackgroundErase API key string
 
 Examples:
 ```matlab
@@ -97,21 +97,21 @@ Notes:
 - Builds a multipart/form-data request with:
   - Field name: image_file
   - File name: the source file’s name and extension
-- Sends POST to https://api.backgrounderase.net/v2 with header x-api-key: YOUR_API_KEY
+- Sends POST to https://api.backgrounderase.com/v2 with header x-api-key: YOUR_API_KEY
 - On 200 OK, saves the body bytes to the destination file and shows a side‑by‑side figure
 
 ## Troubleshooting
 
 - 401 Unauthorized
   - Double-check your API key
-  - Ensure your subscription is active: https://backgrounderase.net/pricing
+  - Ensure your subscription is active: https://backgrounderase.com/pricing
 - Non-200 response / error body
   - The function prints the HTTP status and server message if present
 - SSL/Proxy/Firewall issues
   - If behind a corporate proxy, configure MATLAB’s proxy in Preferences → Web or via:
     - setpref('Internet','UseSystemProxy', true)
     - Or set specific proxy host/port in MATLAB internet preferences
-  - Ensure your network allows outbound HTTPS to api.backgrounderase.net
+  - Ensure your network allows outbound HTTPS to api.backgrounderase.com
 - File I/O errors
   - Verify src exists and is readable; verify dst’s folder is writable
 - No figure appears or imshow not found
@@ -185,7 +185,7 @@ function background_removal(src, dst, api_key)
 
     % Build and send request
     req = matlab.net.http.RequestMessage('POST', headerFields, body);
-    uri = matlab.net.URI('https://api.backgrounderase.net/v2');
+    uri = matlab.net.URI('https://api.backgrounderase.com/v2');
     resp = send(req, uri);
 
     % Handle response

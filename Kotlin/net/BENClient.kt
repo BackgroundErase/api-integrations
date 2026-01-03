@@ -27,7 +27,7 @@ object BENClient {
         .build()
 
     /**
-     * Uploads an image at [inputUri] to api.backgrounderase.net/v2 using x-api-key,
+     * Uploads an image at [inputUri] to api.backgrounderase.com/v2 using x-api-key,
      * and saves the returned PNG to Downloads. Returns the saved file's Uri.
      */
     suspend fun removeBackgroundAndSaveToDownloads(
@@ -58,7 +58,7 @@ object BENClient {
 
         // Create request
         val req = Request.Builder()
-            .url("https://api.backgrounderase.net/v2")
+            .url("https://api.backgrounderase.com/v2")
             .header("x-api-key", apiKey)
             .post(multipart)
             .build()

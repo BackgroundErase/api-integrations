@@ -1,24 +1,24 @@
-# BackgroundErase.NET (BEN2) – Flutter Demo + API Client
+# BackgroundErase – Flutter Demo + API Client
 
-Pick a photo and remove the background using the BackgroundErase.NET API. Works on iOS, Android, web, and desktop.
+Pick a photo and remove the background using the BackgroundErase API. Works on iOS, Android, web, and desktop.
 
-- API base: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Buy/upgrade a plan: https://backgrounderase.net/pricing
+- API base: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Buy/upgrade a plan: https://backgrounderase.com/pricing
 
 <img src="app_demo.png" alt="Demo" width="320">
 
 ## Quick start
 
 1) Get an API key  
-- Create an account or sign in: https://backgrounderase.net/account  
-- If needed, purchase a plan: https://backgrounderase.net/pricing
+- Create an account or sign in: https://backgrounderase.com/account  
+- If needed, purchase a plan: https://backgrounderase.com/pricing
 
 2) Get the code  
 Option A: Clone this repo’s Flutter folder
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Flutter
 git checkout main
@@ -107,7 +107,7 @@ final bytes = await client.removeBackgroundFromBytes(
 ```
 
 Defaults:
-- Base URL: https://api.backgrounderase.net/v2 (no change needed)
+- Base URL: https://api.backgrounderase.com/v2 (no change needed)
 - Auth header: x-api-key: YOUR_API_KEY
 
 Notes:

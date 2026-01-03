@@ -11,7 +11,7 @@
 
 SECTION .rodata
 DEFAULT_API_KEY: db "YOUR_API_KEY",0
-URL:            db "https://api.backgrounderase.net/v2",0
+URL:            db "https://api.backgrounderase.com/v2",0
 CURL:           db "curl",0
 OPT_SSF:        db "-sSf",0
 OPT_H:          db "-H",0

@@ -1,26 +1,26 @@
-# BackgroundErase.NET C (libcurl) CLI
+# BackgroundErase C (libcurl) CLI
 
-A minimal, single-file C client for BackgroundErase.NET that uploads an image and saves the cutout (PNG with transparency) to disk.
+A minimal, single-file C client for the BackgroundErase API that uploads an image and saves the cutout (PNG with transparency) to disk.
 
-- API endpoint: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Plans/pricing: https://backgrounderase.net/pricing
+- API endpoint: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Plans/pricing: https://backgrounderase.com/pricing
 
 File in this folder:
 - background_removal.c
 
 ## Get an API key
 
-- Create an account or sign in: https://backgrounderase.net/account
-- If needed, purchase a plan: https://backgrounderase.net/pricing
+- Create an account or sign in: https://backgrounderase.com/account
+- If needed, purchase a plan: https://backgrounderase.com/pricing
 - Copy your API key from your account page
 
 ## Get this code
 
 Option A: Git (sparse checkout)
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set C
 git checkout main
@@ -29,13 +29,13 @@ cd C
 
 Option B: SVN export
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/C
+svn export https://github.com/BackgroundErase/api-integrations/trunk/C
 cd C
 ```
 
 Optional: sample input image
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 ## Requirements
@@ -141,7 +141,7 @@ Exit codes:
 - On non-200, prints the HTTP status and the server’s response to stderr
 
 Defaults:
-- Endpoint: https://api.backgrounderase.net/v2
+- Endpoint: https://api.backgrounderase.com/v2
 - User-Agent: bgremove-c/1.0
 - Connect timeout: 15s
 - Total timeout: 300s
@@ -173,7 +173,7 @@ Or use the built-in CLI behavior in main():
   - Check the API key value and where it’s sourced from (CLI/env/DEFAULT_API_KEY)
 
 - HTTP 402 Payment Required
-  - You may be out of credits or need a paid plan: https://backgrounderase.net/pricing
+  - You may be out of credits or need a paid plan: https://backgrounderase.com/pricing
 
 - HTTP 400/415
   - Input may be invalid or unsupported; verify the file path and extension
@@ -200,7 +200,7 @@ Or use the built-in CLI behavior in main():
 
 ```bash
 # Get sample image
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 
 # Build
 gcc -o bgremove background_removal.c -lcurl

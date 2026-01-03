@@ -1,10 +1,10 @@
-# BackgroundErase.NET Objective-C CLI
+# BackgroundErase Objective-C CLI
 
-A minimal Objective-C example that uploads an image to BackgroundErase.NET and saves the cutout (PNG with transparency) to disk.
+A minimal Objective-C example that uploads an image to the BackgroundErase API and saves the cutout (PNG with transparency) to disk.
 
-- API endpoint: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Plans/upgrade: https://backgrounderase.net/pricing
+- API endpoint: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Plans/upgrade: https://backgrounderase.com/pricing
 
 This repo/folder contains a single file:
 - BENObjectiveC.m — small CLI that:
@@ -18,22 +18,22 @@ Note: The API responds with raw PNG bytes (no JSON on success).
 
 - macOS with Apple Clang and Foundation framework (Xcode or Command Line Tools)
 - Internet access
-- An API key from BackgroundErase.NET
+- An API key from backgrounderase.com
 
 Tip: This example is intended as a tiny, self-contained CLI. If you integrate into an app, run the network call off the main thread and avoid synchronous waits on UI threads.
 
 ## Get an API key
 
-- Sign in: https://backgrounderase.net/account
-- If needed, purchase/upgrade a plan: https://backgrounderase.net/pricing
+- Sign in: https://backgrounderase.com/account
+- If needed, purchase/upgrade a plan: https://backgrounderase.com/pricing
 - Copy your API key (x-api-key)
 
 ## Install just the Objective-C example
 
 Option A: Git (sparse checkout)
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Objective-C
 git checkout main   # or the default branch
@@ -42,13 +42,13 @@ cd Objective-C
 
 Option B: SVN export
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Objective-C
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Objective-C
 cd Objective-C
 ```
 
 Get a sample input image
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 ## Build
@@ -82,7 +82,7 @@ The output is a PNG with transparency.
 ## How it works (short)
 
 - Determines MIME type based on the input file extension (png, jpg/jpeg, webp, gif, bmp, tif/tiff, heic; otherwise application/octet-stream)
-- Builds a multipart/form-data POST to https://api.backgrounderase.net/v2
+- Builds a multipart/form-data POST to https://api.backgrounderase.com/v2
   - Header: x-api-key: YOUR_API_KEY
   - Field: image_file (file content)
 - On HTTP 200, writes the raw PNG bytes to the output path
@@ -128,7 +128,7 @@ dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
 ## API details (for reference)
 
 - Method: POST
-- URL: https://api.backgrounderase.net/v2
+- URL: https://api.backgrounderase.com/v2
 - Headers:
   - x-api-key: YOUR_API_KEY
   - Content-Type: multipart/form-data; boundary=...

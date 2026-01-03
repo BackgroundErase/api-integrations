@@ -36,7 +36,7 @@ public class BenBackgroundRemoval {
                 .build();
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.backgrounderase.net/v2"))
+                .uri(URI.create("https://api.backgrounderase.com/v2"))
                 .timeout(Duration.ofSeconds(120))
                 .header("x-api-key", API_KEY)
                 .header("Content-Type", "multipart/form-data; boundary=" + boundary)

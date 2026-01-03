@@ -140,7 +140,7 @@ struct ContentView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 6) {
                     // Large inline header
-                    Text("BEN2 Background Removal")
+                    Text("BackgroundErase API")
                         .font(.system(size: 34, weight: .bold))
                         .padding(.horizontal, 4)
 

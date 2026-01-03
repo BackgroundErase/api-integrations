@@ -60,7 +60,7 @@ headers = [
   {~c"x-api-key", String.to_charlist(api_key)}
 ]
 
-url = ~c"https://api.backgrounderase.net/v2"
+url = ~c"https://api.backgrounderase.com/v2"
 content_type = String.to_charlist("multipart/form-data; boundary=#{boundary}")
 
 case :httpc.request(:post, {url, headers, content_type, body}, [], []) do

@@ -1,10 +1,10 @@
-# BEN2 Zig API Client (CLI) — Background Removal
+# BackgroundErase Zig API Client (CLI) — Background Removal
 
-A minimal one-file Zig CLI that uploads an image to BackgroundErase.NET and saves the returned cutout (PNG with transparency).
+A minimal one-file Zig CLI that uploads an image to the BackgroundErase API and saves the returned cutout (PNG with transparency).
 
-- API endpoint: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Plans/pricing: https://backgrounderase.net/pricing
+- API endpoint: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Plans/pricing: https://backgrounderase.com/pricing
 
 This tool:
 - Sends a single image as multipart/form-data (field name: image_file)
@@ -26,8 +26,8 @@ This tool:
 
 Option A: Clone just the Zig folder using sparse checkout
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Zig
 git checkout main   # or replace 'main' with the repo's default branch if different
@@ -36,7 +36,7 @@ cd Zig
 
 Option B: Export the Zig folder via SVN bridge
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Zig
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Zig
 cd Zig
 ```
 
@@ -46,8 +46,8 @@ You should now have background_removal.zig in this directory.
 
 ## Get an API key
 
-- Sign in or create an account: https://backgrounderase.net/account
-- If needed, purchase/upgrade a plan: https://backgrounderase.net/pricing
+- Sign in or create an account: https://backgrounderase.com/account
+- If needed, purchase/upgrade a plan: https://backgrounderase.com/pricing
 - Copy your API key from your account page
 
 ---
@@ -102,7 +102,7 @@ Note: Do not commit real keys to source control.
 
 Get a sample image:
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 Run (using CLI argument):
@@ -141,7 +141,7 @@ API key precedence: CLI arg > BG_ERASE_API_KEY env var > hardcoded default
 
 ## How it works
 
-- POST https://api.backgrounderase.net/v2
+- POST https://api.backgrounderase.com/v2
 - Headers:
   - x-api-key: YOUR_API_KEY
   - Content-Type: multipart/form-data; boundary=...

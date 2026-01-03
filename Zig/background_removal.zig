@@ -43,7 +43,7 @@ pub fn main() !void {
     const body = try buildMultipart(alloc, boundary, "image_file", src_path, mime, file_data);
     defer alloc.free(body);
 
-    // HTTPS POST to https://api.backgrounderase.net/v2
+    // HTTPS POST to https://api.backgrounderase.com/v2
     var client = std.http.Client{ .allocator = alloc };
     defer client.deinit();
 
@@ -51,7 +51,7 @@ pub fn main() !void {
     client.tls_ca_bundle = try std.crypto.Certificate.Bundle.fromSystem(alloc);
     defer client.tls_ca_bundle.deinit();
 
-    const uri = try std.Uri.parse("https://api.backgrounderase.net/v2");
+    const uri = try std.Uri.parse("https://api.backgrounderase.com/v2");
 
     var req = try client.request(.POST, uri, .{
         .server_header_buffer = &[_]u8{},
@@ -60,7 +60,7 @@ pub fn main() !void {
     defer req.deinit();
 
     // headers
-    try req.headers.put("Host", "api.backgrounderase.net");
+    try req.headers.put("Host", "api.backgrounderase.com");
     try req.headers.put("Accept", "*/*");
     try req.headers.put("x-api-key", api_key);
 

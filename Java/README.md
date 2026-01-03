@@ -1,22 +1,22 @@
-# BEN2 Java API Client (single-file example)
+# BackgroundErase Java API Client (single-file example)
 
-A minimal Java 11+ client for BackgroundErase.NET. Upload an image, get back a PNG with transparency (background removed), and save it to disk.
+A minimal Java 11+ client for the BackgroundErase API. Upload an image, get back a PNG with transparency (background removed), and save it to disk.
 
-- API: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Buy/upgrade a plan: https://backgrounderase.net/pricing
+- API: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Buy/upgrade a plan: https://backgrounderase.com/pricing
 
 ## Quick start
 
 1) Get an API key
-- Sign in: https://backgrounderase.net/account
-- If needed, purchase a plan: https://backgrounderase.net/pricing
+- Sign in: https://backgrounderase.com/account
+- If needed, purchase a plan: https://backgrounderase.com/pricing
 
 2) Get the Java example
 Option A: Git (sparse checkout)
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Java
 git checkout main   # or replace 'main' with the repo's default branch if different
@@ -25,13 +25,13 @@ cd Java
 
 Option B: SVN (export just the folder)
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Java
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Java
 cd Java
 ```
 
 3) Get a sample image (or use your own)
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 4) Add your API key
@@ -44,16 +44,16 @@ with your actual key.
 Tip (optional): If you prefer environment variables, change it to:
 ```java
 private static final String API_KEY =
-    System.getenv().getOrDefault("BEN2_API_KEY", "YOUR_API_KEY");
+    System.getenv().getOrDefault("BG_ERASE_API_KEY", "YOUR_API_KEY");
 ```
 Then export the key:
 - macOS/Linux:
   ```bash
-  export BEN2_API_KEY="sk_live_..."
+  export BG_ERASE_API_KEY=""
   ```
 - Windows (PowerShell):
   ```powershell
-  setx BEN2_API_KEY "sk_live_..."
+  setx BG_ERASE_API_KEY ""
   ```
 
 5) Build and run
@@ -69,7 +69,7 @@ java BenBackgroundRemoval
 
 ## What the example does
 
-- Sends a multipart/form-data POST request to https://api.backgrounderase.net/v2
+- Sends a multipart/form-data POST request to https://api.backgrounderase.com/v2
 - Field name: image_file
 - Headers:
   - x-api-key: your key

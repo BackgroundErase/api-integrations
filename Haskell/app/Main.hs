@@ -13,7 +13,7 @@ import           System.Environment (getArgs)
 backgroundRemoval :: String -> FilePath -> FilePath -> IO ()
 backgroundRemoval apiKey src dst = do
   manager <- newManager tlsManagerSettings
-  baseReq <- parseRequest "https://api.backgrounderase.net/v2"
+  baseReq <- parseRequest "https://api.backgrounderase.com/v2"
 
   -- ✅ no type signature on the left of `<-`
   reqWithBody <- formDataBody [partFileSource "image_file" src] baseReq

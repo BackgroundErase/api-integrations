@@ -1,10 +1,10 @@
-# BEN2 Erlang API Client + CLI
+# BackgroundErase Erlang API Client + CLI
 
-Minimal Erlang client and CLI to call BackgroundErase.NET and save the cutout as a PNG with transparency.
+Minimal Erlang client and CLI to call the BackgroundErase API and save the cutout as a PNG with transparency.
 
-- API endpoint: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Plans/pricing: https://backgrounderase.net/pricing
+- API endpoint: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Plans/pricing: https://backgrounderase.com/pricing
 
 Files in this folder:
 - ben_bg.erl — Erlang module that uploads an image (multipart) and writes the PNG response
@@ -17,8 +17,8 @@ Requirements:
 Install (only the Erlang folder)
 Option A: Git (sparse checkout)
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Erlang
 git checkout main   # or the repo's default branch
@@ -27,7 +27,7 @@ cd Erlang
 
 Option B: Subversion (export just this folder)
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/Erlang
+svn export https://github.com/BackgroundErase/api-integrations/trunk/Erlang
 cd Erlang
 ```
 
@@ -45,12 +45,12 @@ chmod +x ben_bg_cli.escript
 
 Quick start
 1) Get an API key
-- Create an account or sign in: https://backgrounderase.net/account
-- If needed, purchase/upgrade: https://backgrounderase.net/pricing
+- Create an account or sign in: https://backgrounderase.com/account
+- If needed, purchase/upgrade: https://backgrounderase.com/pricing
 
 2) Download a sample image
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 3) Run it (choose one)
@@ -78,17 +78,17 @@ C) Escript CLI (like a normal command)
 
 Tip: Keep your key out of history
 ```bash
-export BEN2_API_KEY="YOUR_API_KEY"
-./ben_bg_cli.escript input.jpg output.png "$BEN2_API_KEY"
+export BG_ERASE_API_KEY="YOUR_API_KEY"
+./ben_bg_cli.escript input.jpg output.png "$BG_ERASE_API_KEY"
 ```
 Windows (PowerShell):
 ```powershell
-$env:BEN2_API_KEY="YOUR_API_KEY"
-.\ben_bg_cli.escript input.jpg output.png $env:BEN2_API_KEY
+$env:BG_ERASE_API_KEY="YOUR_API_KEY"
+.\ben_bg_cli.escript input.jpg output.png $env:BG_ERASE_API_KEY
 ```
 
 What it does
-- Sends a multipart/form-data POST to https://api.backgrounderase.net/v2
+- Sends a multipart/form-data POST to https://api.backgrounderase.com/v2
 - Field name: image_file
 - Auth header: x-api-key: YOUR_API_KEY
 - Response: raw PNG bytes (transparent background)
@@ -120,11 +120,11 @@ Examples
 
 - Process many files (bash)
 ```bash
-export BEN2_API_KEY="YOUR_API_KEY"
+export BG_ERASE_API_KEY="YOUR_API_KEY"
 for f in *.jpg *.jpeg *.png 2>/dev/null; do
   [ -e "$f" ] || continue
   out="${f%.*}.cutout.png"
-  ./ben_bg_cli.escript "$f" "$out" "$BEN2_API_KEY" || echo "Failed: $f"
+  ./ben_bg_cli.escript "$f" "$out" "$BG_ERASE_API_KEY" || echo "Failed: $f"
 done
 ```
 

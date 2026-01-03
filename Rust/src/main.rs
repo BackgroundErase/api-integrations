@@ -40,7 +40,7 @@ fn background_removal(src: &str, dst: &str) -> Result<(), Box<dyn std::error::Er
     body.extend_from_slice(format!("--{}--{}", &boundary, crlf).as_bytes());
 
     // Send request with ureq (multipart)
-    let resp = ureq::post("https://api.backgrounderase.net/v2")
+    let resp = ureq::post("https://api.backgrounderase.com/v2")
         .set("x-api-key", API_KEY)
         .set("Content-Type", &format!("multipart/form-data; boundary={}", boundary))
         .send_bytes(&body)?;

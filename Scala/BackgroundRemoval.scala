@@ -17,7 +17,7 @@ object BackgroundRemoval:
       .build()
 
     val req = HttpRequest.newBuilder()
-      .uri(URI.create("https://api.backgrounderase.net/v2"))
+      .uri(URI.create("https://api.backgrounderase.com/v2"))
       .header("Content-Type", contentType)
       .header("x-api-key", cfg.apiKey)
       .POST(HttpRequest.BodyPublishers.ofByteArray(body))

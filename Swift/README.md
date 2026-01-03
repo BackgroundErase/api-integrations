@@ -1,21 +1,21 @@
-# BEN2 Swift API Client + iOS Demo
+# BackgroundErase Swift API Client + iOS Demo
 
-A minimal Swift client for BackgroundErase.NET with a polished iOS demo app. Pick a photo, remove the background via the API, and save/share the result (PNG with transparency).
+A minimal Swift client for the BackgroundErase API with a polished iOS demo app. Pick a photo, remove the background via the API, and save/share the result (PNG with transparency).
 
-- API: https://api.backgrounderase.net/v2
-- Get your API key: https://backgrounderase.net/account
-- Buy/upgrade a plan: https://backgrounderase.net/pricing
+- API: https://api.backgrounderase.com/v2
+- Get your API key: https://backgrounderase.com/account
+- Buy/upgrade a plan: https://backgrounderase.com/pricing
 
 <img src="app_demo.png" alt="Demo" width="300">
 
 ## Quick start
 
 1) Get an API key  
-- Create an account or sign in: https://backgrounderase.net/account  
-- If needed, purchase a plan: https://backgrounderase.net/pricing
+- Create an account or sign in: https://backgrounderase.com/account  
+- If needed, purchase a plan: https://backgrounderase.com/pricing
 
 2) Add your API key to Info.plist  
-- Key: BEN2_API_KEY  
+- Key: BG_ERASE_API_KEY  
 - Value: your API key string
 
 3) Build and run the demo  
@@ -33,8 +33,8 @@ A minimal Swift client for BackgroundErase.NET with a polished iOS demo app. Pic
 
 Option A: Clone this repo
 ```shell
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set Swift
 git checkout main
@@ -50,13 +50,13 @@ Option B: Copy into your project
 ## Configuration
 
 API key
-- The client reads BEN2_API_KEY from your app’s Info.plist by default:
-  - BEN2Client.shared = BEN2Client(apiKey: Bundle.main["BEN2_API_KEY"] ?? "YOUR_API_KEY")
+- The client reads BG_ERASE_API_KEY from your app’s Info.plist by default:
+  - BEN2Client.shared = BEN2Client(apiKey: Bundle.main["BG_ERASE_API_KEY"] ?? "YOUR_API_KEY")
 - You can also pass the key manually:
   - let client = BEN2Client(apiKey: "YOUR_API_KEY")
 
 Base URL
-- Defaults to https://api.backgrounderase.net/v2; no change needed for normal use
+- Defaults to https://api.backgrounderase.com/v2; no change needed for normal use
 
 Timeouts/retries
 - removeBackground(...) accepts a timeout parameter (default 60s)
@@ -73,7 +73,7 @@ Add these to your app’s Info.plist:
 
 XML example:
 ```xml
-<key>BEN2_API_KEY</key>
+<key>BG_ERASE_API_KEY</key>
 <string>YOUR_API_KEY</string>
 <key>NSPhotoLibraryAddUsageDescription</key>
 string>We save your cutouts to your Photos library.</string>
@@ -94,7 +94,7 @@ Simple usage with a UIImage:
 ```swift
 import UIKit
 
-let client = BEN2Client.shared // uses BEN2_API_KEY from Info.plist
+let client = BEN2Client.shared // uses BG_ERASE_API_KEY from Info.plist
 
 let pngBytes = try await client.removeBackground(
     image: myUIImage,

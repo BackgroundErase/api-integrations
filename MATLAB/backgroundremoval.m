@@ -53,7 +53,7 @@ function background_removal(src, dst, api_key)
 
     % Build and send request
     req = matlab.net.http.RequestMessage('POST', headerFields, body);
-    uri = matlab.net.URI('https://api.backgrounderase.net/v2');
+    uri = matlab.net.URI('https://api.backgrounderase.com/v2');
     resp = send(req, uri);
 
     % Handle response

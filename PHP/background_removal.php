@@ -13,7 +13,7 @@ function background_removal(string $src, string $dst, string $apiKey): void
     // Detect MIME type (fallback to octet-stream if unknown)
     $mime = detectMime($src);
 
-    $ch = curl_init('https://api.backgrounderase.net/v2');
+    $ch = curl_init('https://api.backgrounderase.com/v2');
     if ($ch === false) {
         throw new RuntimeException("Failed to initialize cURL");
     }

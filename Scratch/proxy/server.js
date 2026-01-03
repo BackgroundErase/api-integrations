@@ -22,8 +22,8 @@ app.use((req, _res, next) => {
 
 app.get('/ping', (_req, res) => res.json({ ok: true }));
 
-const API_URL = 'https://api.backgrounderase.net/v2';
-const API_KEY = process.env.BEN_API_KEY;
+const API_URL = 'https://api.backgrounderase.com/v2';
+const API_KEY = process.env.BG_ERASE_API_KEY;
 
 app.post('/erase', upload.single('image_file'), async (req, res) => {
   try {

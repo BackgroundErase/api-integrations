@@ -1,10 +1,10 @@
-# BackgroundErase.NET C#/.NET API Client (CLI + single-file client)
+# BackgroundErase C#/.NET API Client (CLI + single-file client)
 
-Minimal C# client and command-line tool to remove image backgrounds using the BackgroundErase.NET API.
+Minimal C# client and command-line tool to remove image backgrounds using the BackgroundErase API.
 
-- API base: https://api.backgrounderase.net/v2
-- Get an API key: https://backgrounderase.net/account
-- Plans/pricing: https://backgrounderase.net/pricing
+- API base: https://api.backgrounderase.com/v2
+- Get an API key: https://backgrounderase.com/account
+- Plans/pricing: https://backgrounderase.com/pricing
 
 Contents
 - CS/BENClient.cs — low-level HTTP client (multipart/form-data upload)
@@ -20,15 +20,15 @@ What you get
 
 - .NET 6.0+ SDK (6, 7, or 8 are fine)
   - Install: https://dotnet.microsoft.com/download
-- An API key from https://backgrounderase.net/account
+- An API key from https://backgrounderase.com/account
 
 
 ## Install just the C# client
 
 Option A: git sparse-checkout
 ```bash
-git clone --no-checkout https://github.com/PramaLLC/ben-api-other-integrations.git
-cd ben-api-other-integrations
+git clone --no-checkout https://github.com/BackgroundErase/api-integrations.git
+cd api-integrations
 git sparse-checkout init --cone
 git sparse-checkout set CS
 git checkout main   # or whatever the default branch is
@@ -37,13 +37,13 @@ cd CS
 
 Option B: svn export
 ```bash
-svn export https://github.com/PramaLLC/ben-api-other-integrations/trunk/CS
+svn export https://github.com/BackgroundErase/api-integrations/trunk/CS
 cd CS
 ```
 
 Download a sample image (optional):
 ```bash
-curl -L -o input.jpg https://raw.githubusercontent.com/PramaLLC/ben-api-other-integrations/main/input.jpg
+curl -L -o input.jpg https://raw.githubusercontent.com/BackgroundErase/api-integrations/main/input.jpg
 ```
 
 
@@ -122,7 +122,7 @@ Notes
 ## Troubleshooting
 
 - 401 Unauthorized
-  - Invalid/missing API key. Verify your key and plan at https://backgrounderase.net/account
+  - Invalid/missing API key. Verify your key and plan at https://backgrounderase.com/account
   - If using environment variables, confirm your process actually sees BG_ERASE_API_KEY.
 
 - 400/415 Bad Request or Unsupported Media Type
@@ -140,7 +140,7 @@ Notes
 
 ## API details (what the client sends)
 
-- Method: POST https://api.backgrounderase.net/v2
+- Method: POST https://api.backgrounderase.com/v2
 - Headers:
   - x-api-key: YOUR_API_KEY
   - Content-Type: multipart/form-data; boundary=...
@@ -201,7 +201,7 @@ These changes address common copy/paste issues (newline constant, string quoting
   - Yes, the output is a PNG with transparency.
 
 - How big can my input image be?
-  - Depends on your plan. See https://backgrounderase.net/pricing
+  - Depends on your plan. See https://backgrounderase.com/pricing
 
 - Can I change timeouts or add retries?
   - You can wrap the HttpClient call in your own retry logic or pass a CancellationToken with a timeout via CancellationTokenSource.
@@ -209,6 +209,6 @@ These changes address common copy/paste issues (newline constant, string quoting
 
 ## License and contributions
 
-- This sample is provided as-is to help you integrate with BackgroundErase.NET.
+- This sample is provided as-is to help you integrate with the BackgroundErase API.
 - Issues and PRs are welcome. Please include:
   - .NET version, OS, reproduction steps, and any console logs.

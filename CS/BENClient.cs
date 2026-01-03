@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 public static class BENClient
 {
-    private static readonly Uri Endpoint = new Uri("https://api.backgrounderase.net/v2");
+    private static readonly Uri Endpoint = new Uri("https://api.backgrounderase.com/v2");
 
     public static async Task<bool> RemoveBackgroundManualAsync(
         string src,

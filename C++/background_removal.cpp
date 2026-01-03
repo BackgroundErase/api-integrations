@@ -74,7 +74,7 @@ bool background_removal(const std::string& src,
     headers = curl_slist_append(headers, "Expect:");
 
     // libcurl options
-    curl_easy_setopt(curl, CURLOPT_URL, "https://api.backgrounderase.net/v2");
+    curl_easy_setopt(curl, CURLOPT_URL, "https://api.backgrounderase.com/v2");
     curl_easy_setopt(curl, CURLOPT_MIMEPOST, mime);
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_to_vector);

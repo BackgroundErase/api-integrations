@@ -142,7 +142,7 @@ have_env:
     .data
     .align  3
 DEFAULT_API_KEY: .asciz "YOUR_API_KEY"
-URL:            .asciz "https://api.backgrounderase.net/v2"
+URL:            .asciz "https://api.backgrounderase.com/v2"
 CURL_ABS:       .asciz "/usr/bin/curl"
 OPT_SSF:        .asciz "-sSf"
 OPT_H:          .asciz "-H"
@@ -154,8 +154,8 @@ USAGE:          .asciz "Usage: background_removal <src> <dst>"
 ENV_NAME:       .asciz "BG_ERASE_API_KEY"
 ERR_EXEC:       .asciz "execvp failed"
 SRC_ERR:        .asciz "source image not readable"
-DBG1:           .asciz "[ben] header ->"
-DBG2:           .asciz "[ben] form   ->"
+DBG1:           .asciz "[BackgroundErase] header ->"
+DBG2:           .asciz "[BackgroundERase] form   ->"
 
     .bss
     .align  4

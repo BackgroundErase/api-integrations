@@ -116,7 +116,7 @@ int background_removal(const char *src, const char *dst, const char *api_key) {
     }
 
     // Endpoint
-    curl_easy_setopt(curl, CURLOPT_URL, "https://api.backgrounderase.net/v2");
+    curl_easy_setopt(curl, CURLOPT_URL, "https://api.backgrounderase.com/v2");
     curl_easy_setopt(curl, CURLOPT_USERAGENT, "bgremove-c/1.0");
 
     // Timeouts (tweak as needed)
