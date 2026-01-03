@@ -1,4 +1,4 @@
-# BEN Background Removal Android (Kotlin + Compose) Demo
+# BackgroundErase Android (Kotlin + Compose) Demo
 
 Pick an image, upload it to the Background Erase API, and save the returned cutout to Downloads. The app previews the PNG with transparency, lets you save to Photos, and share/export it.
 
